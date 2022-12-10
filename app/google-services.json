@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "866584811683",
+    "project_id": "umfs-2cb55",
+    "storage_bucket": "umfs-2cb55.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:866584811683:android:4fad8fb2edda301e7e8716",
+        "android_client_info": {
+          "package_name": "com.example.umfs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "866584811683-fl1e7aqn41jaqvm1km72p8hk6jc5s5qi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrDpUU2F7KhAwAEs2ySR65KVkBf8_oLLk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "866584811683-fl1e7aqn41jaqvm1km72p8hk6jc5s5qi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
