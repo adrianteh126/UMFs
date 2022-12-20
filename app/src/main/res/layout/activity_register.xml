@@ -6,4 +6,30 @@
     android:layout_height="match_parent"
     tools:context=".RegisterActivity">
 
+    <EditText
+        android:id="@+id/ETSiswamail"
+        android:layout_width="270dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="148dp"
+        android:ems="10"
+        android:hint="Siswamail"
+        android:inputType="textPersonName"
+        android:text="Siswamail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName2"
+        android:layout_width="263dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="39dp"
+        android:ems="10"
+        android:hint="Username"
+        android:inputType="textPersonName"
+        android:text="Username"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ETSiswamail" />
 </androidx.constraintlayout.widget.ConstraintLayout>
