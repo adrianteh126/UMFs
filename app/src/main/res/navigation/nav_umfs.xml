@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_umfs"
+    app:startDestination="@id/DestPosts">
+<!--    TODO: Use suitable activity and fragment for each functionality, refer http://stackoverflow.com/questions/24647078/android-activity-fragment-responsibilities-for-data-loading/24647574#24647574-->
+
+    <fragment
+        android:id="@+id/DestPosts"
+        android:name="com.example.umfs.PostsFragment"
+        android:label="fragment_posts"
+        tools:layout="@layout/fragment_posts" />
+    <activity
+        android:id="@+id/DestSearch"
+        android:name="com.example.umfs.SearchActivity"
+        android:label="activity_search"
+        tools:layout="@layout/activity_search" />
+    <fragment
+        android:id="@+id/DestNotification"
+        android:name="com.example.umfs.Notification"
+        android:label="fragment_notification"
+        tools:layout="@layout/fragment_notification" />
+</navigation>
