@@ -88,7 +88,7 @@
         app:layout_constraintTop_toBottomOf="@+id/ETPassword" />
 
     <Button
-        android:id="@+id/BTRegister"
+        android:id="@+id/BTGoToRegister"
         android:layout_width="279dp"
         android:layout_height="51dp"
         android:background="#00000000"
