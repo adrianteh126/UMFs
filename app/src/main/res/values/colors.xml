@@ -10,9 +10,10 @@
 
     <!--    Color palette   -->
     <color name="dark_blue_1">#688BAB</color>
+    <color name="dark_blue_2">#275983</color>
     <color name="light_blue_1">#D8E7EC</color>
+    <color name="light_blue_2">#B4D3E8</color>
     <color name="light_orange_1">#FF6259</color>
     <color name="light_grey_1">#F6F6F6</color>
-
 
 </resources>
