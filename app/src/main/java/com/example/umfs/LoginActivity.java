@@ -16,7 +16,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        BTRegister = findViewById(R.id.BTRegister);
+        BTRegister = findViewById(R.id.BTLogin);
 
         BTRegister.setOnClickListener(new View.OnClickListener() {
             @Override
