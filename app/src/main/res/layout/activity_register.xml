@@ -82,8 +82,10 @@
         android:textColor="#25567F"
         android:textSize="47sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/imageView4"
-        tools:layout_editor_absoluteY="66dp" />
+        tools:layout_editor_absoluteY="67dp" />
 
     <ImageView
         android:id="@+id/imageView4"
