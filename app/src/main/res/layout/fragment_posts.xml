@@ -21,14 +21,12 @@
                 android:layout_weight="2"
                 />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/umf_logo"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                />
-
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:src="@drawable/umf_logo" />
 
 
     </LinearLayout>

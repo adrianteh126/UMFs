@@ -9,16 +9,26 @@
     <fragment
         android:id="@+id/DestPosts"
         android:name="com.example.umfs.PostsFragment"
-        android:label="fragment_posts"
+        android:label="Posts"
         tools:layout="@layout/fragment_posts" />
     <activity
         android:id="@+id/DestSearch"
         android:name="com.example.umfs.SearchActivity"
-        android:label="activity_search"
+        android:label="Search"
         tools:layout="@layout/activity_search" />
     <fragment
         android:id="@+id/DestNotification"
         android:name="com.example.umfs.Notification"
-        android:label="fragment_notification"
+        android:label="Notification"
         tools:layout="@layout/fragment_notification" />
+    <fragment
+        android:id="@+id/DestMessage"
+        android:name="com.example.umfs.MessageListFragment"
+        android:label="Inbox"
+        tools:layout="@layout/fragment_message_list" />
+    <fragment
+        android:id="@+id/DestProfile"
+        android:name="com.example.umfs.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>

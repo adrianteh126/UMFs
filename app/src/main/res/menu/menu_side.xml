@@ -4,14 +4,14 @@
 
     <item
         android:id="@+id/DestNotification"
-        android:title="Notification"
         android:icon="@drawable/bell"
-        app:showAsAction="ifRoom"/>
+        android:title="Notification"
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/DestSearch"
-        android:title="Search"
         android:icon="@drawable/search"
-        app:showAsAction="ifRoom"/>
+        android:title="Search"
+        app:showAsAction="always" />
 
 </menu>
