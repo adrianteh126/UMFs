@@ -33,13 +33,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/ETUsername"
+        android:id="@+id/ETSiswamailLogin"
         android:layout_width="335dp"
         android:layout_height="50dp"
         android:layout_marginTop="316dp"
         android:background="@drawable/text_box_edit"
         android:drawablePadding="12dp"
-        android:hint="Username"
+        android:hint="Siswamail"
         android:padding="12dp"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,7 +47,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/ETPassword"
+        android:id="@+id/ETPasswordLogin"
         android:layout_width="336dp"
         android:layout_height="50dp"
         android:layout_marginTop="380dp"
@@ -55,11 +55,11 @@
         android:hint="Password"
         android:padding="12dp"
         android:textSize="20dp"
+        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
 
     <Button
@@ -67,12 +67,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="140dp"
-        android:background="@drawable/btn_bg"
+        android:backgroundTint="@color/button_bg_color"
         android:text="Login"
+        android:enabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ETPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/ETPasswordLogin" />
 
     <Button
         android:id="@+id/BTForgotPassword"
@@ -85,7 +86,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ETPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/ETPasswordLogin" />
 
     <Button
         android:id="@+id/BTGoToRegister"
