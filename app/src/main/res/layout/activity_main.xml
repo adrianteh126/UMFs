@@ -43,7 +43,6 @@
 
     </LinearLayout>
 
-    The side menu is disabled
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/sideNav"
         android:layout_width="wrap_content"

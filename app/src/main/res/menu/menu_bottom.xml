@@ -3,8 +3,17 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-    <item android:title="Item" />
-    <item android:title="Item" />
-    <item android:title="Item" />
-    <item android:title="Item" />
+    <item
+        android:id="@+id/DestPosts"
+        android:title="Posts" />
+    <item
+        android:id="@+id/DestNotification"
+        android:icon="@drawable/bell"
+        android:title="Notification" />
+    <item
+        android:id="@+id/DestMessage"
+        android:title="Inbox" />
+    <item
+        android:id="@+id/DestProfile"
+        android:title="Profile" />
 </menu>
