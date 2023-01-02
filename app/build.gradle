@@ -54,6 +54,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage'
     implementation platform('com.google.firebase:firebase-bom:28.4.0')
     implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.makeramen:roundedimageview:2.3.0'
 }
 
 apply plugin: 'com.google.gms.google-services'
