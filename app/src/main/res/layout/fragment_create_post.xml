@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".CreatePostFragment"
+    android:padding="30dp"
+    >
+
+    <LinearLayout
+        android:id="@+id/LLUserTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="30dp"
+        >
+        <ImageView
+            android:id="@+id/IVUserProfilePicture"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/umf_logo"
+            android:layout_marginRight="15dp"
+            />
+        <TextView
+            android:id="@+id/TVUserID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="User_ID"
+            android:textColor="@color/black"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LLCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="30dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Category"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textAlignment="center"
+            />
+        <Spinner
+            android:id="@+id/SpnrCategory"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="25dp"
+            android:prompt="@string/category_header"
+            android:background="@drawable/border"
+            />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/LLTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <EditText
+            android:id="@+id/ETTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Title"
+            android:textColorHint="@color/black"
+            android:background="@null"
+            android:textSize="30dp"
+            android:layout_marginBottom="10dp"
+            />
+        <EditText
+            android:id="@+id/ETContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="What's today update?"
+            android:background="@null"
+            />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/LLButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal"
+        >
+        <Button
+            android:id="@+id/BtnPost"
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:layout_height="wrap_content"
+            android:text="POST"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/light_orange_1"
+            android:layout_gravity="center"
+            />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="55dp"
+            android:drawableTop="@drawable/addimgbutton"
+            android:layout_marginBottom="10dp"
+            android:background="@color/transparent"
+            />
+
+    </LinearLayout>
+
+
+</LinearLayout>

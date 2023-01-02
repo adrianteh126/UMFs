@@ -7,6 +7,7 @@
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>
     <string name="sync_header">Sync</string>
+    <string name="category_header">Category</string>
 
     <!-- Messages Preferences -->
     <string name="signature_title">Your signature</string>
