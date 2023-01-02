@@ -8,7 +8,7 @@
     tools:context=".RegisterActivity">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/IVWhiteRectangle"
         android:layout_width="303dp"
         android:layout_height="419dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -23,6 +23,7 @@
         android:layout_height="65dp"
         android:layout_marginTop="30dp"
         android:ems="10"
+        android:hint="Username"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,10 +35,11 @@
         android:layout_height="65dp"
         android:layout_marginTop="30dp"
         android:ems="10"
+        android:hint="Siswamail"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView2" />
+        app:layout_constraintTop_toTopOf="@+id/IVWhiteRectangle" />
 
     <EditText
         android:id="@+id/ETRegisterPassword"
@@ -45,6 +47,7 @@
         android:layout_height="65dp"
         android:layout_marginTop="30dp"
         android:ems="10"
+        android:hint="Password"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,6 +59,7 @@
         android:layout_height="65dp"
         android:layout_marginTop="30dp"
         android:ems="10"
+        android:hint="Repeat Password"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -73,10 +77,11 @@
         app:layout_constraintTop_toBottomOf="@+id/ETRepeatPassword" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/TVTitleRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="68dp"
         android:fontFamily="serif"
         android:text="Register"
         android:textColor="#25567F"
@@ -84,55 +89,64 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView4"
-        tools:layout_editor_absoluteY="67dp" />
+        app:layout_constraintStart_toEndOf="@+id/IVLogo"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/IVLogo"
         android:layout_width="98dp"
         android:layout_height="108dp"
         android:layout_marginStart="56dp"
         android:layout_marginTop="28dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        android:contentDescription="Logo of UMFs : A Cute Tiger"
+        app:layout_constraintBottom_toTopOf="@+id/IVWhiteRectangle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.8"
         app:srcCompat="@drawable/group_10" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/TVSiswamail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Siswamail"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="74dp"
-        tools:layout_editor_absoluteY="172dp" />
+        app:layout_constraintBottom_toTopOf="@+id/ETSiswamail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.213"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/TVUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Username"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="74dp"
-        tools:layout_editor_absoluteY="267dp" />
+        app:layout_constraintBottom_toTopOf="@+id/ETRegisterUsername"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.213"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/TVPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Password"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="74dp"
-        tools:layout_editor_absoluteY="363dp" />
+        app:layout_constraintBottom_toTopOf="@+id/ETRegisterPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.212"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/TVRepeatPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Repeat Password"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="74dp"
-        tools:layout_editor_absoluteY="458dp" />
+        app:layout_constraintBottom_toTopOf="@+id/ETRepeatPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.246"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
