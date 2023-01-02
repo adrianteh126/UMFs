@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -36,21 +37,25 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-//        //Make the navigation drawer icon always appear on the corner
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // setup navigation graph (menu)
         NavHostFragment host = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.NHFMain);
         NavController navController = host.getNavController();
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-        NavigationUI.setupActionBarWithNavController(this,navController,appBarConfiguration);
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         setupNavMenu(navController);
+        setupBottomNavMenu(navController);
     }
 
     //setupBottomNavMenu(navController) method
     private void setupNavMenu (NavController navController) {
         NavigationView sideNav = findViewById(R.id.sideNav);
-        NavigationUI.setupWithNavController(sideNav,navController);
+        NavigationUI.setupWithNavController(sideNav, navController);
+    }
+
+    private void setupBottomNavMenu (NavController navController) {
+        BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
+        NavigationUI.setupWithNavController(bottomNav, navController);
     }
 
     @Override
