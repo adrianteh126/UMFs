@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_blue_1"
     tools:context=".SetupProfileActivity">
 
     <androidx.cardview.widget.CardView
@@ -55,10 +56,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="126dp"
-        android:background="#00FFFFFF"
         android:text="Create Profile"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="#3F51B5"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/light_orange_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ETBioSetup" />
