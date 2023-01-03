@@ -1,13 +1,11 @@
 package com.example.umfs;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +22,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,6 +38,8 @@ public class CreatePostFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    public ArrayList<Category> categoryArrayList;
+    public ArrayAdapter<Category> arrayAdapter;
 
     public CreatePostFragment() {
         // Required empty public constructor
@@ -103,17 +102,12 @@ public class CreatePostFragment extends Fragment {
         });
 
         //TODO : Link to database to query item list
-        //Spinner drop down elements
-        List<String> categories = new ArrayList<String>();
-        categories.add("Item 1");
-        categories.add("Item 2");
-        categories.add("Item 3");
-        categories.add("Item 4");
-        categories.add("Item 5");
-        categories.add("Item 6");
+
+        categoryArrayList = new ArrayList<>();
+        getCategories(); //fetch categories from database and update to arraylist
 
         //Create adapter for spinner
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_item,categories);
+        arrayAdapter = new ArrayAdapter<Category>(view.getContext(), android.R.layout.simple_spinner_item,categoryArrayList);
 
         //Drop down layout style - list view with radio button
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -129,7 +123,26 @@ public class CreatePostFragment extends Fragment {
 //                startActivity(i);
             }
         });
+    }
 
+    public void getCategories() {
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("Categories");
+        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                categoryArrayList.clear();
+                for (DataSnapshot categorySnap : snapshot.getChildren()) {
+                    String name = categorySnap.child("category").getValue().toString();
+                    Category category = new Category(name);
+                    categoryArrayList.add(category);
+                    arrayAdapter.notifyDataSetChanged();
+                }
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }
