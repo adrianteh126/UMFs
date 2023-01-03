@@ -26,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private Button BTRegister;
     private Button BTLogin;
+    private Button BTForgotPassword;
     private EditText ETSiswamail;
     private EditText ETPassword;
     private FirebaseAuth auth;  //for sign-in authentication
@@ -38,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
 
         BTRegister = findViewById(R.id.BTGoToRegister);
         BTLogin = findViewById(R.id.BTLogin);
+        BTForgotPassword = findViewById(R.id.BTForgotPassword);
         ETSiswamail = findViewById(R.id.ETSiswamailLogin);
         ETPassword = findViewById(R.id.ETPasswordLogin);
         auth = FirebaseAuth.getInstance();
@@ -77,6 +79,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+                finish();
+            }
+        });
+
+        BTForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
                 finish();
             }
         });
