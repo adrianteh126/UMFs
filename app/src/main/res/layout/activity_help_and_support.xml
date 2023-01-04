@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_blue_1"
+    tools:context=".HelpAndSupportActivity">
+
+    <LinearLayout
+        android:layout_width="500dp"
+        android:layout_height="406dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="70dp"
+        android:background="@drawable/view_profile"
+        android:elevation="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/TVEmail"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="100dp"
+            android:fontFamily="@font/calistoga"
+            android:text="UMFs@gmail.com"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/TVHelpSupport"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:text="Just send us an email and we will get back
+to you right away! :)"
+            android:textAlignment="center"
+            android:textSize="15dp" />
+
+
+    </LinearLayout>
+</RelativeLayout>

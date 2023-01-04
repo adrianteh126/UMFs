@@ -74,6 +74,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
+        android:letterSpacing="0"
+        android:textAllCaps="false"
+        android:textSize="15dp"
+        android:backgroundTint="@color/light_orange_1"
         app:layout_constraintTop_toBottomOf="@+id/ETRepeatPassword" />
 
     <TextView
