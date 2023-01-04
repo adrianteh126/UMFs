@@ -41,6 +41,7 @@
         android:layout_marginBottom="30dp"
         >
         <TextView
+            android:id="@+id/TVCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Category"
@@ -104,6 +105,7 @@
             />
 
         <Button
+            android:id="@+id/BtnUploadImage"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="55dp"
@@ -114,5 +116,19 @@
 
     </LinearLayout>
 
+    <ProgressBar
+        android:id="@+id/PBUpload"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        />
+
+    <ImageView
+        android:id="@+id/IVUpload"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        />
 
 </LinearLayout>
