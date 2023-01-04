@@ -88,8 +88,8 @@ public class RegisterActivity extends AppCompatActivity {
                     String id = task.getResult().getUser().getUid();
                     //Create a new sub-node/instance under "Users" with the user object variables
                     databaseRoot.getReference().child("Users").child(id).setValue(user);
-                    Toast.makeText(RegisterActivity.this, "User Registered Successfully. Please LogIn", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                    Toast.makeText(RegisterActivity.this, "User Registered Successfully", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(RegisterActivity.this, SetupProfileActivity.class));
                     finish();
                 }
                 else{
