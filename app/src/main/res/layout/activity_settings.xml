@@ -1,87 +1,91 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_blue_1"
+
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/TBMainAct3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="622dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
 
-    <TableLayout
-        android:id="@+id/tableLayout"
-        android:layout_width="411dp"
-        android:layout_height="99dp"
-        android:layout_marginTop="36dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.666"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TBMainAct3">
+        android:layout_centerInParent="true"
+        android:layout_gravity="center_horizontal"
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="33dp"
+        android:background="@drawable/view_profile"
+        android:elevation="10dp"
+        android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="69dp"
-                android:layout_height="match_parent"
-                app:srcCompat="@drawable/search" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="100dp"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/BTFeedbackIcon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+
+                android:background="#00000000"
+                android:scaleType="fitCenter"
+                android:src="@drawable/feedback"
+                tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
             <Button
                 android:id="@+id/BTFeedback"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#00FFFFFF"
+                android:layout_marginStart="20dp"
+                android:backgroundTint="@color/transparent"
                 android:text="Feedback"
-                android:textAlignment="viewStart"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="#000000"
-                android:textSize="30sp"
-                app:rippleColor="#00FFFFFF"
-                app:strokeColor="#00FFFFFF" />
+                android:textAlignment="0"
+                android:textAllCaps="false"
+                android:textColor="@color/black" />
 
-        </TableRow>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        </LinearLayout>
 
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                app:srcCompat="@drawable/search" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/TVHelp"
-                android:layout_width="match_parent"
+            <ImageButton
+                android:id="@+id/BTHelpSupportIcon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="#00000000"
+                android:scaleType="fitCenter"
+                android:src="@drawable/question"
+                tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+            <Button
+                android:id="@+id/BTHelpSupport"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:backgroundTint="@color/transparent"
                 android:text="Help and Support"
-                android:textColor="#000000"
-                android:textSize="34sp" />
+                android:textAlignment="0"
+                android:textAllCaps="false"
+                android:textColor="@color/black" />
 
-        </TableRow>
 
-    </TableLayout>
+        </LinearLayout>
 
-    <Button
-        android:id="@+id/BTLogout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="55dp"
-        android:fontFamily="monospace"
-        android:text="Log Out"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+</RelativeLayout>
