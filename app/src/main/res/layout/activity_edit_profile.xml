@@ -40,10 +40,10 @@
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:backgroundTint="@color/light_orange_1"
-            android:text="Change Picture"
-            android:textSize="15dp"
+            android:letterSpacing="0"
             android:textAllCaps="false"
-            android:letterSpacing="0"/>
+            android:textSize="15dp"
+            android:text="Change Picture"/>
 
         <TextView
             android:id="@+id/TVUsername"
