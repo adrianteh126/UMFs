@@ -1,25 +1,45 @@
 package com.example.umfs;
 
+
+import static android.app.Activity.RESULT_OK;
+
+import android.content.ContentResolver;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -38,8 +58,29 @@ public class CreatePostFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private static final int PICK_IMAGE_REQUEST = 1;
+
     public ArrayList<Category> categoryArrayList;
     public ArrayAdapter<Category> arrayAdapter;
+
+    private ImageView IVUserProfilePicture;
+    private TextView TVUserID;
+    private TextView TVCategory;
+    private Spinner SpnrCategory;
+    private EditText ETTitle;
+    private EditText ETContent;
+    private Button BtnPost;
+    private Button BtnUploadImage;
+    private ProgressBar PBUpload;
+    private ImageView IVUpload;
+
+    private Uri UriImage;
+
+    private StorageReference storageReference;
+    private DatabaseReference databaseReference;
+
+    private StorageTask uploadTask;
 
     public CreatePostFragment() {
         // Required empty public constructor
@@ -84,9 +125,43 @@ public class CreatePostFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        //Setup spinner and button
-        Spinner SpnrCategory = view.findViewById(R.id.SpnrCategory);
-        Button BtnPost = view.findViewById(R.id.BtnPost);
+        SpnrCategory = view.findViewById(R.id.SpnrCategory);
+        BtnPost = view.findViewById(R.id.BtnPost);
+        BtnUploadImage = view.findViewById(R.id.BtnUploadImage);
+        PBUpload = view.findViewById(R.id.PBUpload);
+        ETTitle = view.findViewById(R.id.ETTitle);
+        ETContent = view.findViewById(R.id.ETContent);
+        IVUpload = view.findViewById(R.id.IVUpload);
+
+        storageReference = FirebaseStorage.getInstance().getReference("Uploads");
+        databaseReference = FirebaseDatabase.getInstance().getReference("Uploads");
+
+        BtnUploadImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openFileChooser();
+            }
+
+            private void openFileChooser() {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(intent,PICK_IMAGE_REQUEST);
+            }
+        });
+
+        BtnPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (uploadTask != null && uploadTask.isInProgress()) {
+                    Toast.makeText(getContext(), "Upload in progress", Toast.LENGTH_SHORT).show();;
+                }
+                else {
+                    uploadPost(UriImage);
+                }
+            }
+        });
+
         SpnrCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -100,29 +175,17 @@ public class CreatePostFragment extends Fragment {
 
             }
         });
-
-        //TODO : Link to database to query item list
-
+        //fetch categories from database and update to arraylist
         categoryArrayList = new ArrayList<>();
-        getCategories(); //fetch categories from database and update to arraylist
-
+        getCategories(); // get categories from database
         //Create adapter for spinner
         arrayAdapter = new ArrayAdapter<Category>(view.getContext(), android.R.layout.simple_spinner_item,categoryArrayList);
-
         //Drop down layout style - list view with radio button
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         //Attaching data adapter to spinner
         SpnrCategory.setAdapter(arrayAdapter);
 
-        BtnPost.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Intent i = new Intent(from,to.class);
-//                i.putExtra("data",String.valueOf(SpnrCategory.getSelectedItemId()));
-//                startActivity(i);
-            }
-        });
+
     }
 
     public void getCategories() {
@@ -138,11 +201,77 @@ public class CreatePostFragment extends Fragment {
                     arrayAdapter.notifyDataSetChanged();
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
+                && data != null && data.getData() != null) {
+            UriImage = data.getData();
+            Picasso.get().load(UriImage).into(IVUpload);
+        }
+    }
+
+    private String getFileExtension(Uri uri){
+        ContentResolver contentResolver = getContext().getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(contentResolver.getType(uri));
+    }
+
+    private void uploadPost(Uri UriImage) {
+        if (UriImage != null) {
+            StorageReference fileReference = storageReference.child(System.currentTimeMillis()
+                    + "." + getFileExtension(UriImage));
+            uploadTask = fileReference.putFile(UriImage)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    Handler handler = new Handler();
+                                    handler.postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            PBUpload.setProgress(0);
+                                        }
+                                    },500);
+                                    Toast.makeText(getContext(), "Upload successfully", Toast.LENGTH_SHORT).show();
+                                    String postId = databaseReference.push().getKey();
+                                    Post post = new Post(uri.toString(),UriImage.toString()
+                                            ,((Category)SpnrCategory.getSelectedItem()).getCategory()
+                                            ,"User_ID"
+                                            ,ETTitle.getText().toString()
+                                            ,ETContent.getText().toString()
+                                            ,System.currentTimeMillis());
+                                    databaseReference.child(postId).setValue(post);
+                                }
+                            });
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                            double progress = (100.0 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
+                            PBUpload.setProgress((int)progress);
+                        }
+                    });
+        }
+        else {
+            Toast.makeText(getContext(), "No file selected", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }
