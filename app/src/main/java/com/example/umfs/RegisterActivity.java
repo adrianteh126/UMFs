@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -52,6 +54,11 @@ public class RegisterActivity extends AppCompatActivity {
         //reference to Users node under UMFs realtime database
         reference = databaseRoot.getReference().child("Users");
 
+        ETSiswamail.addTextChangedListener(TWRegister);
+        ETPassword.addTextChangedListener(TWRegister);
+        ETUsername.addTextChangedListener(TWRegister);
+        ETRepeatPassword.addTextChangedListener(TWRegister);
+
         BTRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,6 +84,29 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
+
+    private TextWatcher TWRegister = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            String txt_siswamail = ETSiswamail.getText().toString().trim();
+            String txt_password = ETPassword.getText().toString().trim();
+            String txt_username = ETUsername.getText().toString().trim();
+            String txt_repeatpassword = ETRepeatPassword.getText().toString().trim();
+
+            //button will only be enabled if both fields are filled
+            BTRegister.setEnabled(!txt_siswamail.isEmpty() && !txt_password.isEmpty()
+                    && !txt_username.isEmpty() && !txt_repeatpassword.isEmpty());
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+        }
+    };
+
 
     private void registerUser(String siswamail, String username, String password) {
         auth.createUserWithEmailAndPassword(siswamail,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
