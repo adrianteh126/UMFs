@@ -1,5 +1,6 @@
 package com.example.umfs;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,7 +21,7 @@ import android.widget.Button;
  */
 public class ProfileFragment extends Fragment {
 
-    private Button BTEditProfile;
+    Activity context;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -65,6 +67,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        context = getActivity();
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_profile, container, false);
     }
@@ -72,13 +75,32 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        BTEditProfile = view.findViewById(R.id.BTEdit);
+        }
+
+    public void onStart() {
+        super.onStart();
+        ImageButton BTEditProfile = (ImageButton) context.findViewById(R.id.BTEdit);
+        ImageButton BTSettings = (ImageButton) context.findViewById(R.id.BTSettings);
 
         BTEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent1 = new Intent(context, EditProfileActivity.class);
+                startActivity(intent1);
             }
         });
+
+        BTSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent2 = new Intent(context, SettingsActivity.class);
+                startActivity(intent2);
+            }
+        });
+
+
     }
-}
+
+    }
+
+

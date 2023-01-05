@@ -67,7 +67,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="140dp"
-        android:backgroundTint="@color/light_orange_1"
+        android:backgroundTint="@color/button_bg_color"
         android:text="Login"
         android:enabled="false"
         app:layout_constraintBottom_toBottomOf="parent"

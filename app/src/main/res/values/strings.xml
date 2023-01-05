@@ -22,5 +22,14 @@
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
 
+    <string
+        name="logout_dialog"
+        >Are you sure you want to log out of UMFs?
+    </string>
+
+    <string
+        name="LogOut"
+        >Log Out
+    </string>
 
 </resources>

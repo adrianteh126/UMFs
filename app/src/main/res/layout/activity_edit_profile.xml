@@ -17,7 +17,6 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="33dp"
-        android:background="@drawable/view_profile"
         android:elevation="10dp"
         android:orientation="vertical">
 
@@ -28,8 +27,8 @@
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
             android:elevation="10dp"
-            android:src="@drawable/profile_pic"
-            app:shapeAppearanceOverlay="@style/Circular" />
+            android:src="@drawable/profile_pic"/>
+
 
         <Button
             android:id="@+id/BTChangeProfile"

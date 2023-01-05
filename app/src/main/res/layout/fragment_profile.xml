@@ -12,7 +12,6 @@
         android:layout_height="406dp"
         android:layout_gravity="center_horizontal"
         android:layout_margin="70dp"
-        android:background="@drawable/view_profile"
         android:elevation="10dp"
         android:orientation="vertical">
 
@@ -23,8 +22,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:elevation="10dp"
-            android:src="@drawable/profile_pic"
-            app:shapeAppearanceOverlay="@style/Circular" />
+            android:src="@drawable/profile_pic" />
 
         <TextView
             android:id="@+id/ETUsername"
@@ -85,13 +83,15 @@
         android:layout_marginStart="250dp"
         android:layout_marginTop="500dp"
         android:orientation="vertical">
+
         <ImageButton
+            android:id="@+id/BTSettings"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="#00000000"
+            android:elevation="10dp"
             android:scaleType="fitCenter"
             android:src="@drawable/setting"
-            android:elevation="10dp"
             tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
     </LinearLayout>
 
