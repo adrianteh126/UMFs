@@ -11,7 +11,11 @@
         android:icon="@drawable/bell"
         android:title="Notification" />
     <item
+        android:id="@+id/DestCreatePost"
+        android:title="Create Post" />
+    <item
         android:id="@+id/DestMessage"
+        android:icon="@drawable/ic_chat"
         android:title="Inbox" />
     <item
         android:id="@+id/DestProfile"

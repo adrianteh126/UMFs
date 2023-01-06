@@ -31,4 +31,9 @@
         android:name="com.example.umfs.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/DestCreatePost"
+        android:name="com.example.umfs.CreatePostFragment"
+        android:label="Create Post"
+        tools:layout="@layout/fragment_create_post" />
 </navigation>
