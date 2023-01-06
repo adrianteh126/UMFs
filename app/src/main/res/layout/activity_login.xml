@@ -21,22 +21,24 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="147dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="150dp"
-        android:fontFamily="@font/calistoga"
         android:text="UMFs"
         android:textAlignment="center"
         android:textColor="@color/dark_blue_2"
         android:textSize="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.501" />
 
     <EditText
         android:id="@+id/ETSiswamailLogin"
         android:layout_width="335dp"
         android:layout_height="50dp"
-        android:layout_marginTop="316dp"
         android:background="@drawable/text_box_edit"
         android:drawablePadding="12dp"
         android:hint="Siswamail"
@@ -44,22 +46,22 @@
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
         android:id="@+id/ETPasswordLogin"
         android:layout_width="336dp"
         android:layout_height="50dp"
-        android:layout_marginTop="380dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/text_box_edit"
         android:hint="Password"
+        android:inputType="textPassword"
         android:padding="12dp"
         android:textSize="20dp"
-        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/ETSiswamailLogin" />
 
 
     <Button
