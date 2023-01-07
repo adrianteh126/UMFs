@@ -2,17 +2,13 @@ package com.example.umfs;
 
 public class User {
 
-        public String siswamail,username,password, bio;
-        public String[] following;
-        private String profilephoto;
+    public String siswamail;
+    public String username;
+    public String password;
+    public String Bio;
+    public String Faculty;
+    public String ProfilePicture;
 
-    public String getProfilephoto() {
-        return profilephoto;
-    }
-
-    public void setProfilephoto(String profilephoto) {
-        this.profilephoto = profilephoto;
-    }
 
     public User() {
         }
@@ -48,19 +44,27 @@ public class User {
     }
 
     public String getBio() {
-        return bio;
+        return Bio;
     }
 
     public void setBio(String bio) {
-        this.bio = bio;
+        Bio = bio;
     }
 
-    public String[] getFollowing() {
-        return following;
+    public String getFaculty() {
+        return Faculty;
     }
 
-    public void setFollowing(String[] following) {
-        this.following = following;
+    public void setFaculty(String faculty) {
+        Faculty = faculty;
+    }
+
+    public String getProfilePicture() {
+        return ProfilePicture;
+    }
+
+    public void setProfilePicture(String profilePicture) {
+        ProfilePicture = profilePicture;
     }
 }
 

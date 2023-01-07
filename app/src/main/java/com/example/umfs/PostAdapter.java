@@ -59,7 +59,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder>{
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         User user = snapshot.getValue(User.class);
                         Picasso.get()
-                                .load(user.getProfilephoto())
+                                .load(user.getProfilePicture())
                                 .placeholder(R.drawable.placeholder)
                                 .into(holder.binding.profileImage);
                         holder.binding.name.setText(user.getUsername());
