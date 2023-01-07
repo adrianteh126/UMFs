@@ -13,7 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.umfs.Model.Post;
+import com.example.umfs.Post;
 import com.example.umfs.databinding.FragmentHomeBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -109,7 +109,7 @@ public class HomeFragment extends Fragment {
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Post post = new Post();
                     post.setPostImage(uri.toString());
-                    post.setPostedBy(FirebaseAuth.getInstance().getUid());
+                    post.setPostBy(FirebaseAuth.getInstance().getUid());
                     post.setPostedAt(new Date().getTime());
 
                     database.getReference().child("posts")

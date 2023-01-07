@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.umfs.Model.Post;
+import com.example.umfs.Post;
 import com.example.umfs.databinding.PostSampleBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -53,17 +53,17 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder>{
 
         FirebaseDatabase.getInstance().getReference()
                 .child("Users")
-                .child(post.getPostedBy())
+                .child(post.getPostBy())
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         User user = snapshot.getValue(User.class);
                         Picasso.get()
-                                .load(user.getCoverPhoto())
+                                .load(user.getProfilephoto())
                                 .placeholder(R.drawable.placeholder)
                                 .into(holder.binding.profileImage);
-                        holder.binding.name.setText(user.getName());
-                        holder.binding.profession.setText(user.getProfession());
+                        holder.binding.name.setText(user.getUsername());
+//                        holder.binding.profession.setText(user.getProfession());
                     }
 
                     @Override
