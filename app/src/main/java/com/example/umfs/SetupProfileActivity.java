@@ -258,7 +258,6 @@ public class SetupProfileActivity extends AppCompatActivity implements AdapterVi
                         @Override
                         public void onSuccess(Void unused) {
                             Toast.makeText(SetupProfileActivity.this, "Profile Successfully Set-Up", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(SetupProfileActivity.this, MainActivity.class));
                             finish();
                         }
                     })

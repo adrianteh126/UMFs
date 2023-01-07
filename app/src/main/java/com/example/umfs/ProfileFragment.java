@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,6 +45,8 @@ public class ProfileFragment extends Fragment {
     DatabaseReference databaseReference;    //reference to node under UMFs database aka Users node
     DatabaseReference userRef;  //reference to specific user under "Users" node
 
+
+    private boolean shouldRefreshOnResume = false;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -157,6 +160,7 @@ public class ProfileFragment extends Fragment {
         BTEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                onPause();
                 Intent intent1 = new Intent(context, EditProfileActivity.class);
                 startActivity(intent1);
             }
@@ -169,6 +173,21 @@ public class ProfileFragment extends Fragment {
                 startActivity(intent2);
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(shouldRefreshOnResume){
+            getFragmentManager().beginTransaction().detach(ProfileFragment.this).attach(ProfileFragment.this).commit();
+            shouldRefreshOnResume = false;
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        shouldRefreshOnResume = true;
     }
 }
 
