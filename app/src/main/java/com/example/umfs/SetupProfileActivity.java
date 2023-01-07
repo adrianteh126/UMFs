@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -35,6 +37,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -96,7 +99,7 @@ public class SetupProfileActivity extends AppCompatActivity implements AdapterVi
 
         try{
             //TODO : Cloud Storage reference, to store profile pictures of user
-            storageReference = FirebaseStorage.getInstance().getReference("Profile Pictures");
+            storageReference = FirebaseStorage.getInstance().getReference("ProfilePicture");
         } catch (Exception e){
             Toast.makeText(SetupProfileActivity.this, "Error in Cloud Storage", Toast.LENGTH_SHORT).show();
         }
@@ -137,6 +140,7 @@ public class SetupProfileActivity extends AppCompatActivity implements AdapterVi
             }
         });
 
+        //To launch file chooser activity
         activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {
                     @Override
@@ -154,11 +158,56 @@ public class SetupProfileActivity extends AppCompatActivity implements AdapterVi
                 if(imageUri!=null){
                     uploadProfilePicture();
                 }
+                else{
+                    uploadNullProfilePicture();
+                }
                 uploadProfile();
             }
         });
 
     }
+
+    private void uploadNullProfilePicture() {
+        //TODO : If No Profile Picture, will upload @drawable/man as profile picture instead
+        // but the imageView must be converted to Bytes first
+        IVProfilePicSetup = findViewById(R.id.IVProfilePicSetup);
+        IVProfilePicSetup.setDrawingCacheEnabled(true);
+        IVProfilePicSetup.buildDrawingCache();
+        Bitmap bitmap = IVProfilePicSetup.getDrawingCache();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] data = baos.toByteArray();
+
+        StorageReference fileReference = storageReference.child(currentUserID).child(System.currentTimeMillis() + ".JPEG");
+        UploadTask uploadTask1 = fileReference.putBytes(data);
+        uploadTask1.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                Toast.makeText(SetupProfileActivity.this, "Failure to upload Null Profile Picture", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                if (taskSnapshot.getMetadata() != null) {
+                    if (taskSnapshot.getMetadata().getReference() != null) {
+                        Task<Uri> result = taskSnapshot.getStorage().getDownloadUrl();
+                        result.addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                String imageUrl = uri.toString();
+                                Map<String, Object> picUpdates = new HashMap<>();
+                                picUpdates.put("ProfilePicture", imageUrl);
+                                userRef.updateChildren(picUpdates);
+
+                                Toast.makeText(SetupProfileActivity.this, "Upload Successful", Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }
+                }
+            }
+        });
+    }
+
 
     private String getFileExtension(Uri uri){
         ContentResolver cR = getContentResolver();
@@ -180,7 +229,7 @@ public class SetupProfileActivity extends AppCompatActivity implements AdapterVi
                                     public void onSuccess(Uri uri) {
                                         String imageUrl = uri.toString();
                                         Map<String, Object> picUpdates = new HashMap<>();
-                                        picUpdates.put("Profile Picture", imageUrl);
+                                        picUpdates.put("ProfilePicture", imageUrl);
                                         userRef.updateChildren(picUpdates);
 
                                         Toast.makeText(SetupProfileActivity.this, "Upload Successful", Toast.LENGTH_LONG).show();
@@ -197,8 +246,10 @@ public class SetupProfileActivity extends AppCompatActivity implements AdapterVi
                     }
                 });
     }
+
     private void uploadProfile() {
         try {
+            // TODO : Upload User Profile Data in Realtime Database under the specific user node
             Map<String, Object> profileUpdates = new HashMap<>();
             profileUpdates.put("Faculty", item);
             profileUpdates.put("Bio", ETBioSetup.getText().toString().trim());
