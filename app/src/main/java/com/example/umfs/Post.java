@@ -20,6 +20,9 @@ public class Post {
         this.postedAt = postedAt;
     }
 
+    public Post() {
+    }
+
     public String getPostUrl() {
         return postUrl;
     }

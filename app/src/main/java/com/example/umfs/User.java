@@ -4,8 +4,17 @@ public class User {
 
         public String siswamail,username,password, bio;
         public String[] following;
+        private String profilephoto;
 
-        public User() {
+    public String getProfilephoto() {
+        return profilephoto;
+    }
+
+    public void setProfilephoto(String profilephoto) {
+        this.profilephoto = profilephoto;
+    }
+
+    public User() {
         }
 
         public User(String siswamail, String username, String password) {
