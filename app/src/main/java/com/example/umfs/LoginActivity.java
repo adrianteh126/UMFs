@@ -30,7 +30,6 @@ public class LoginActivity extends AppCompatActivity {
     private EditText ETSiswamail;
     private EditText ETPassword;
     private FirebaseAuth auth;  //for sign-in authentication
-    FirebaseUser currentUser; // get user
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +43,6 @@ public class LoginActivity extends AppCompatActivity {
         ETPassword = findViewById(R.id.ETPasswordLogin);
         auth = FirebaseAuth.getInstance();
 
-
-        //to check if user has been previously logged in or not
-        if (auth != null) {
-            currentUser = auth.getCurrentUser();
-        }
 
         ETSiswamail.addTextChangedListener(TWLogin);
         ETPassword.addTextChangedListener(TWLogin);
@@ -64,12 +58,10 @@ public class LoginActivity extends AppCompatActivity {
                     ETSiswamail.setError("Invalid Email");
                     ETSiswamail.setFocusable(true);
 
-                }
-                else if(txt_password.isEmpty()){
+                } else if (txt_password.isEmpty()) {
                     ETPassword.setError("Invalid password");
                     ETSiswamail.setFocusable(true);
-                }
-                else {
+                } else {
                     loginUser(txt_siswamail, txt_password);
                 }
             }
@@ -113,23 +105,33 @@ public class LoginActivity extends AppCompatActivity {
         }
     };
 
-            private void loginUser(String txt_siswamail, String txt_password) {
-                auth.signInWithEmailAndPassword(txt_siswamail,txt_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            //store user that is logged in, so they don't have to log in again
-                            FirebaseUser user = auth.getCurrentUser();
-                            Intent intent = new Intent();
-                            Toast.makeText(LoginActivity.this, "Welcome to UMFs", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                            finish();
-                        }
-                        else{
-                            Toast.makeText(LoginActivity.this, "Incorrect password or email!", Toast.LENGTH_SHORT).show();
-                        }
+    private void loginUser(String txt_siswamail, String txt_password) {
+        auth.signInWithEmailAndPassword(txt_siswamail, txt_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    //store user that is logged in, so they don't have to log in again
+                    FirebaseUser user = auth.getCurrentUser();
+                    Intent intent = new Intent();
+                    Toast.makeText(LoginActivity.this, "Welcome to UMFs", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    finish();
+                } else {
+                    Toast.makeText(LoginActivity.this, "Incorrect password or email!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = auth.getCurrentUser();
+        if (currentUser != null) {
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
     }
 }

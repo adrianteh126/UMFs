@@ -2,6 +2,7 @@ package com.example.umfs;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,6 +37,12 @@ import android.widget.ImageButton;
 public class ProfileFragment extends Fragment {
 
     Activity context;
+
+    StorageReference storageReference;  //Cloud Storage reference
+    FirebaseUser currentUser;   //store the current FirebaseUser authenticated
+    FirebaseDatabase databaseRoot;  //access to UMFs realtime database @ firebase
+    DatabaseReference databaseReference;    //reference to node under UMFs database aka Users node
+    DatabaseReference userRef;  //reference to specific user under "Users" node
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -76,7 +97,57 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        final ImageView IVProfilePicPage = view.findViewById(R.id.IVProfilePicPage);
+        final TextView TVUsernameProfile = view.findViewById(R.id.TVUsernameProfile);
+        final TextView TVFacultyProfile = view.findViewById(R.id.TVFacultyProfile);
+        final TextView TVBioProfile = view.findViewById(R.id.TVBioProfile);
+
+        currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        String currentUserID = currentUser.getUid();
+
+        try {
+            //TODO : Cloud Storage reference, to store profile pictures of user
+            storageReference = FirebaseStorage.getInstance().getReference("ProfilePicture");
+            //get access to UMFs realtime database
+            String databaseURL = "https://umfs-2cb55-default-rtdb.asia-southeast1.firebasedatabase.app";
+            databaseRoot = FirebaseDatabase.getInstance(databaseURL);
+            //reference to Users node under UMFs realtime database
+            databaseReference = databaseRoot.getReference().child("Users");
+            //reference to specific user file under "Users" node
+            userRef = databaseReference.child(currentUserID);
+        } catch (Exception e){
+            Toast.makeText(getContext(), "Error in connecting to database", Toast.LENGTH_SHORT).show();
         }
+
+        try{
+            userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    String usernameProfile = snapshot.child("username").getValue().toString();
+                    TVUsernameProfile.setText(usernameProfile);
+
+                    String bioProfile = snapshot.child("Bio").getValue().toString();
+                    TVBioProfile.setText(bioProfile);
+
+                    String facultyProfile = snapshot.child("Faculty").getValue().toString();
+                    TVFacultyProfile.setText(facultyProfile);
+
+                    String pictureProfile = snapshot.child("ProfilePicture").getValue().toString();
+                    Picasso.get().load(pictureProfile).into(IVProfilePicPage);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(getContext(), "Error in fetching data", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        } catch (Exception e){
+            Toast.makeText(getContext(), "Method Error", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
     public void onStart() {
         super.onStart();
@@ -98,10 +169,7 @@ public class ProfileFragment extends Fragment {
                 startActivity(intent2);
             }
         });
-
-
     }
-
-    }
+}
 
 
