@@ -62,10 +62,10 @@ public class RegisterActivity extends AppCompatActivity {
         BTRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String txt_siswamail = ETSiswamail.getText().toString();
-                String txt_username = ETUsername.getText().toString();
-                String txt_password = ETPassword.getText().toString();
-                String txt_repeatpassword = ETRepeatPassword.getText().toString();
+                String txt_siswamail = ETSiswamail.getText().toString().trim();
+                String txt_username = ETUsername.getText().toString().trim();
+                String txt_password = ETPassword.getText().toString().trim();
+                String txt_repeatpassword = ETRepeatPassword.getText().toString().trim();
                 String[] checkDomain = txt_siswamail.split("[@]");
                 String domain = checkDomain[1];
 
