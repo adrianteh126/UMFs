@@ -1,10 +1,15 @@
 package com.example.umfs;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,26 +29,47 @@ public class SearchActivity extends AppCompatActivity {
     RecyclerView RVSearchResults;
     SearchView SVSearchResults;
 
+    //Speech-to-text
+    protected static final int RESULT_SPEECH = 1;
+    ImageView IVTextToSpeech;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-//        //setup action bar (disabled - should not have action bar)
-//        Toolbar toolbar = findViewById(R.id.TBMainAct);
-//        setSupportActionBar(toolbar);
-//        DrawerLayout drawerLayout = findViewById(R.id.DLMain);
-//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this
-//                , drawerLayout,toolbar
-//                ,R.string.navigation_drawer_open
-//                ,R.string.navigation_drawer_close);
-//        drawerLayout.addDrawerListener(toggle);
-//        toggle.syncState();
-
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Uploads");
         RVSearchResults = findViewById(R.id.RVSearchResults);
         SVSearchResults = findViewById(R.id.SVSearchResults);
+        IVTextToSpeech = findViewById(R.id.IVTextToSpeech);
 
+        IVTextToSpeech.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"en_US");
+                try {
+                    startActivityForResult(intent,RESULT_SPEECH);
+                } catch (Exception e) {
+                    Toast.makeText(SearchActivity.this, "Your device doesn't support Speech to Text", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case RESULT_SPEECH:
+                if (resultCode == RESULT_OK && data != null) {
+                    ArrayList<String> text = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    SVSearchResults.setQuery(text.get(0),true);
+                }
+                break;
+        }
     }
 
     @Override
