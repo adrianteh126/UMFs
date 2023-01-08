@@ -24,13 +24,25 @@
             >
             <SearchView
                 android:id="@+id/SVSearchResults"
-                android:layout_marginHorizontal="20dp"
-                android:layout_width="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_width="wrap_content"
+                android:maxWidth="315dp"
                 android:layout_height="40dp"
-                android:queryHint="Trending topic : World Cup 2022.."
+                android:queryHint="On Trending: FIFA 2022.."
                 android:iconifiedByDefault="false"
                 android:background="@drawable/border_menu"
                 />
+
+                <ImageView
+                    android:paddingVertical="9dp"
+                    android:id="@+id/IVTextToSpeech"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/icon_mic"
+                    android:background="@drawable/border_menu"
+                    />
+
+
 
         </androidx.appcompat.widget.Toolbar>
 
