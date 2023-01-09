@@ -19,7 +19,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder>{
+public class  PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder>{
 
     Context context;
     ArrayList<Post> list;
