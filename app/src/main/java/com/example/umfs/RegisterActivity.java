@@ -117,10 +117,10 @@ public class RegisterActivity extends AppCompatActivity {
                         DatabaseReference userRef = databaseRoot.getReference().child("Users");
                         String id = task.getResult().getUser().getUid();
 
-                        Map<String, User> user = new HashMap<>();
+                        Map<String, Object> user = new HashMap<>();
                         user.put(id, new User(siswamail,username,password));
 
-                        userRef.setValue(user);
+                        userRef.updateChildren(user);
 
                     }catch (Exception e) {
                         Toast.makeText(RegisterActivity.this, "Error in Database", Toast.LENGTH_SHORT).show();
