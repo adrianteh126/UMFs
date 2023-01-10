@@ -2,22 +2,23 @@ package com.example.umfs;
 
 public class User {
 
-    public String siswamail;
-    public String username;
-    public String password;
-    public String Bio;
-    public String Faculty;
-    public String ProfilePicture;
-
+    private String siswamail;
+    private String username;
+    private String password;
+    private String Bio;
+    private String Faculty;
+    private String ProfilePicture;
 
     public User() {
-        }
+    }
 
-        public User(String siswamail, String username, String password) {
-            this.siswamail = siswamail;
-            this.username = username;
-            this.password = password;
-        }
+    public User(String siswamail, String username, String password) {
+        this.siswamail = siswamail;
+        this.username = username;
+        this.password = password;
+    }
+
+
 
     public String getSiswamail() {
         return siswamail;
@@ -67,4 +68,3 @@ public class User {
         ProfilePicture = profilePicture;
     }
 }
-
