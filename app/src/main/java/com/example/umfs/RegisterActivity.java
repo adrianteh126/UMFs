@@ -62,10 +62,10 @@ public class RegisterActivity extends AppCompatActivity {
         BTRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String txt_siswamail = ETSiswamail.getText().toString().trim();
-                String txt_username = ETUsername.getText().toString().trim();
-                String txt_password = ETPassword.getText().toString().trim();
-                String txt_repeatpassword = ETRepeatPassword.getText().toString().trim();
+                String txt_siswamail = ETSiswamail.getText().toString();
+                String txt_username = ETUsername.getText().toString();
+                String txt_password = ETPassword.getText().toString();
+                String txt_repeatpassword = ETRepeatPassword.getText().toString();
                 String[] checkDomain = txt_siswamail.split("[@]");
                 String domain = checkDomain[1];
 
@@ -113,17 +113,23 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    User user = new User(siswamail,username,password);
-                    //Get the Unique ID generated when user sign in authentication is successful
-                    String id = task.getResult().getUser().getUid();
-                    //Create a new sub-node/instance under "Users" with the user object variables
-                    databaseRoot.getReference().child("Users").child(id).setValue(user);
-                    Toast.makeText(RegisterActivity.this, "User Registered Successfully", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(RegisterActivity.this, SetupProfileActivity.class));
-                    finish();
+                    try {
+                        DatabaseReference userRef = databaseRoot.getReference().child("Users");
+                        String id = task.getResult().getUser().getUid();
+
+                        Map<String, User> user = new HashMap<>();
+                        user.put(id, new User(siswamail,username,password));
+
+                        userRef.setValue(user);
+
+                    }catch (Exception e) {
+                        Toast.makeText(RegisterActivity.this, "Error in Database", Toast.LENGTH_SHORT).show();
+                    }
+                        startActivity(new Intent(RegisterActivity.this, SetupProfileActivity.class));
+                        finish();
                 }
                 else{
-                    Toast.makeText(RegisterActivity.this, "Registration Failed :(", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "User Cannot Be Authenticated", Toast.LENGTH_SHORT).show();
                 }
             }
         });

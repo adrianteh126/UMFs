@@ -127,17 +127,18 @@ public class ProfileFragment extends Fragment {
             userRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    String usernameProfile = snapshot.child("username").getValue().toString();
-                    TVUsernameProfile.setText(usernameProfile);
+                    User user = snapshot.getValue(User.class);
+                    //String usernameProfile = snapshot.child("username").getValue().toString();
+                    TVUsernameProfile.setText(user.getUsername());
 
-                    String bioProfile = snapshot.child("Bio").getValue().toString();
-                    TVBioProfile.setText(bioProfile);
+                    //String bioProfile = snapshot.child("Bio").getValue().toString();
+                    TVBioProfile.setText(user.getBio());
 
-                    String facultyProfile = snapshot.child("Faculty").getValue().toString();
-                    TVFacultyProfile.setText(facultyProfile);
+                    //String facultyProfile = snapshot.child("Faculty").getValue().toString();
+                    TVFacultyProfile.setText(user.getFaculty());
 
-                    String pictureProfile = snapshot.child("ProfilePicture").getValue().toString();
-                    Picasso.get().load(pictureProfile).into(IVProfilePicPage);
+                    //String pictureProfile = snapshot.child("ProfilePicture").getValue().toString();
+                    Picasso.get().load(user.getProfilePicture()).into(IVProfilePicPage);
                 }
 
                 @Override
