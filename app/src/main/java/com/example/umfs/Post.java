@@ -9,6 +9,9 @@ public class Post {
     private String postTitle; // store post title
     private String postDescription; //store description
     private long postedAt; //store post time : System.currentTimeMillis()
+    private String postId;
+    private int postLike;
+    private int commentCount;
 
     public Post(String postUrl, String postImage, String postCategory, String postBy, String postTitle, String postDescription, long postedAt) {
         this.postUrl = postUrl;
@@ -77,5 +80,29 @@ public class Post {
 
     public void setPostedAt(long postedAt) {
         this.postedAt = postedAt;
+    }
+
+    public String getPostId() {
+        return postId;
+    }
+
+    public void setPostId(String postId) {
+        this.postId = postId;
+    }
+
+    public int getPostLike() {
+        return postLike;
+    }
+
+    public void setPostLike(int postLike) {
+        this.postLike = postLike;
+    }
+
+    public int getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(int commentCount) {
+        this.commentCount = commentCount;
     }
 }

@@ -3,6 +3,7 @@ package com.example.umfs;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.umfs.Post;
 import com.example.umfs.databinding.FragmentHomeBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,6 +37,7 @@ public class HomeFragment extends Fragment {
     FirebaseDatabase database;
     ArrayList<Post> list = new ArrayList<>();
 
+
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -48,6 +49,7 @@ public class HomeFragment extends Fragment {
         auth = FirebaseAuth.getInstance();
         storage = FirebaseStorage.getInstance();
         database = FirebaseDatabase.getInstance();
+        Log.d("DEBUG", "check");
 
     }
 
@@ -57,19 +59,11 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false);
 
-        binding.addPostBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                intent.setType("image/*");
-                startActivityForResult(intent, 11);
-            }
-        });
-
         PostAdapter adapter = new PostAdapter(getContext(), list);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         binding.postRV.setLayoutManager(layoutManager);
+        layoutManager.setReverseLayout(true);
+        layoutManager.setStackFromEnd(true);
         binding.postRV.setAdapter(adapter);
 
         database.getReference().child("posts")
@@ -79,6 +73,7 @@ public class HomeFragment extends Fragment {
                         list.clear();
                         for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                             Post post = dataSnapshot.getValue(Post.class);
+                            post.setPostId(dataSnapshot.getKey());
                             list.add(post);
                         }
                         adapter.notifyDataSetChanged();
@@ -100,7 +95,7 @@ public class HomeFragment extends Fragment {
         if (data.getData() != null){
             Uri uri = data.getData();
 
-            final StorageReference reference = storage.getReference().child("user_posts")
+            final StorageReference reference = storage.getReference().child("posts")
                     .child(FirebaseAuth.getInstance().getUid())
                     .child(new Date().getTime()+"");
             

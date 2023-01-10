@@ -1,131 +1,121 @@
 package com.example.umfs;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.umfs.databinding.NotificationRvDesignBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-import java.util.List;
+import java.util.ArrayList;
 
-public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.ViewHolder>{
+public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.viewHolder> {
 
-    private Context mContext;
-    private List<NotificationModel> mNotification;
+    ArrayList<Notification> list;
+    Context context;
 
-    public NotificationAdapter(Context mContext, List<NotificationModel> mNotification) {
-        this.mContext = mContext;
-        this.mNotification = mNotification;
+    public NotificationAdapter(ArrayList<Notification> list, Context context) {
+        this.list = list;
+        this.context = context;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.notification_item,parent,false);
-        return new NotificationAdapter.ViewHolder(view);
+    public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.notification_rv_design,parent,false);
+        return new viewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull viewHolder holder, int position) {
+        Notification notification = list.get(position);
 
-        final NotificationModel notification = mNotification.get(position);
+        String type = notification.getType();
 
-        getUser(holder.profileImage, holder.username, notification.getUserID());
-        holder.comment.setText(notification.getText());
+        FirebaseDatabase.getInstance().getReference()
+                .child("Users")
+                .child(notification.getNotificationBy())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        User user = snapshot.getValue(User.class);
+                        Picasso.get()
+                                .load(user.getProfilePicture())
+                                .placeholder(R.drawable.placeholder)
+                                .into(holder.binding.profileImage);
 
-        if (notification.isPost()) {
-            holder.postImage.setVisibility(View.VISIBLE);
-            getPostImage(holder.postImage, notification.getPostID());
-        } else {
-            holder.postImage.setVisibility(View.GONE);
-        }
+                        if (type.equals("like")){
+                            holder.binding.notification.setText(Html.fromHtml("<b>" + user.getUsername() + "</b>" + " liked your post"));
+                        }else if (type.equals("comment")){
+                            holder.binding.notification.setText(Html.fromHtml("<b>" + user.getUsername() + "</b>" + " Commented your post"));
+                        }else{
+                            holder.binding.notification.setText(Html.fromHtml("<b>" + user.getUsername() + "</b>" + " start following you."));
+                        }
+                    }
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+        holder.binding.openNotification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (notification.isPost()) {
-                    mContext.getSharedPreferences("", Context.MODE_PRIVATE).edit().putString("postID", notification.getPostID()).apply();
-                    ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.NHFMain, new PostViewFragment()).commit();
-                } else {
-                    mContext.getSharedPreferences("PROFILE", Context.MODE_PRIVATE).edit().putString("profileID", notification.getUserID()).apply();
-                    ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.NHFMain, new ProfileFragment()).commit();
+                if(!type.equals("follow")){
+                    FirebaseDatabase.getInstance().getReference()
+                                    .child("notification")
+                                            .child(notification.getPostedBy())
+                                                    .child(notification.getNotificationID())
+                                                            .child("checkOpen")
+                                                                    .setValue(true);
+                    holder.binding.openNotification.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                    Intent intent = new Intent(context, CommentActivity.class);
+                    intent.putExtra("postId",notification.getPostID());
+                    intent.putExtra("postedBy",notification.getPostedBy());
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
                 }
-            }
-        });
-
-    }
-
-    private void getPostImage(ImageView postImage, String postID) {
-
-        FirebaseDatabase.getInstance().getReference().child("Uploads").child(postID).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Post post = snapshot.getValue(Post.class);
-                Picasso.get().load(post.getPostImage()).placeholder(R.mipmap.ic_launcher).into(postImage);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
+        Boolean checkOpen = notification.isCheckOpen();
+        if (checkOpen == true){
+            holder.binding.openNotification.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        }
+        else {}
 
-    }
 
-    private void getUser(ImageView profileImage, TextView username, String userID) {
-        FirebaseDatabase.getInstance().getReference().child("Users").child("siswamail").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User user = snapshot.getValue(User.class);
-                if (user.getProfilePicture().equals("default")) {
-                    profileImage.setImageResource(R.mipmap.ic_launcher);
-                } else {
-                    Picasso.get().load(user.getProfilePicture()).into(profileImage);
-                }
-                username.setText(user.getUsername());
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
     }
 
     @Override
     public int getItemCount() {
-        return mNotification.size();
+        return list.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public ImageView profileImage;
-        public ImageView postImage;
-        public TextView username;
-        public TextView comment;
+    public class viewHolder extends RecyclerView.ViewHolder{
 
-        public ViewHolder(@NonNull View itemView) {
+        NotificationRvDesignBinding binding;
+
+        public viewHolder(@NonNull View itemView) {
             super(itemView);
-
-            profileImage = itemView.findViewById(R.id.CVProfileImage);
-            postImage = itemView.findViewById(R.id.IVPostImage);
-            username = itemView.findViewById(R.id.TVUsername);
-            comment = itemView.findViewById(R.id.TVComment);
+            binding = NotificationRvDesignBinding.bind(itemView);
         }
-    }{
-
     }
+
+
+
 
 }

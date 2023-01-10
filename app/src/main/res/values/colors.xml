@@ -16,5 +16,6 @@
     <color name="light_orange_1">#FF6259</color>
     <color name="light_grey_1">#F6F6F6</color>
     <color name="transparent">#00000000</color>
+    <color name="gray">#808080</color>
 
 </resources>
