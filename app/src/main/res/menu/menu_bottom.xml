@@ -5,19 +5,23 @@
 
     <item
         android:id="@+id/DestPosts"
-        android:title="Posts" />
-    <item
-        android:id="@+id/DestNotification"
-        android:icon="@drawable/bell"
-        android:title="Notification" />
+        android:icon="@drawable/home_icon"
+        android:title="Home" />
+
     <item
         android:id="@+id/DestCreatePost"
-        android:title="Create Post" />
+        android:icon="@drawable/create_post_icon"
+        android:title="Create Post"
+        />
+    
     <item
         android:id="@+id/DestMessage"
         android:icon="@drawable/ic_chat"
-        android:title="Inbox" />
+        android:title="Inbox"
+        />
+
     <item
         android:id="@+id/DestProfile"
+        android:icon="@drawable/profile_icon"
         android:title="Profile" />
 </menu>
