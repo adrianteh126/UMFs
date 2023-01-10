@@ -2,12 +2,12 @@ package com.example.umfs;
 
 public class User {
 
-    private String siswamail;
-    private String username;
-    private String password;
-    private String Bio;
-    private String Faculty;
-    private String ProfilePicture;
+    protected String siswamail;
+    protected String username;
+    protected String password;
+    protected String Bio;
+    protected String Faculty;
+    protected String ProfilePicture;
 
     public User() {
     }
