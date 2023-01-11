@@ -30,6 +30,7 @@
                 android:layout_width="170dp"
                 android:layout_height="170dp"
                 android:elevation="10dp"
+                android:scaleType="centerCrop"
                 tools:srcCompat="@tools:sample/avatars" />
         </androidx.cardview.widget.CardView>
 

@@ -33,7 +33,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     @NonNull
     @Override
     public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.notification_rv_design,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.notification_rv_design, parent, false);
         return new viewHolder(view);
     }
 
@@ -55,11 +55,12 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                                 .placeholder(R.drawable.placeholder)
                                 .into(holder.binding.profileImage);
 
-                        if (type.equals("like")){
+                        if (type.equals("like")) {
                             holder.binding.notification.setText(Html.fromHtml("<b>" + user.getUsername() + "</b>" + " liked your post"));
-                        }else if (type.equals("comment")){
+
+                        } else if (type.equals("comment")) {
                             holder.binding.notification.setText(Html.fromHtml("<b>" + user.getUsername() + "</b>" + " Commented your post"));
-                        }else{
+                        } else {
                             holder.binding.notification.setText(Html.fromHtml("<b>" + user.getUsername() + "</b>" + " start following you."));
                         }
                     }
@@ -73,17 +74,17 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         holder.binding.openNotification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!type.equals("follow")){
+                if (!type.equals("like")) {
                     FirebaseDatabase.getInstance().getReference()
-                                    .child("notification")
-                                            .child(notification.getPostedBy())
-                                                    .child(notification.getNotificationID())
-                                                            .child("checkOpen")
-                                                                    .setValue(true);
+                            .child("notification")
+                            .child(notification.getPostedBy())
+                            .child(notification.getNotificationID())
+                            .child("checkOpen")
+                            .setValue(true);
                     holder.binding.openNotification.setBackgroundColor(Color.parseColor("#FFFFFF"));
                     Intent intent = new Intent(context, CommentActivity.class);
-                    intent.putExtra("postId",notification.getPostID());
-                    intent.putExtra("postedBy",notification.getPostedBy());
+                    intent.putExtra("postId", notification.getPostID());
+                    intent.putExtra("postedBy", notification.getPostedBy());
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                 }
@@ -91,10 +92,10 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             }
         });
         Boolean checkOpen = notification.isCheckOpen();
-        if (checkOpen == true){
+        if (checkOpen == true) {
             holder.binding.openNotification.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        } else {
         }
-        else {}
 
 
     }
@@ -105,7 +106,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     }
 
 
-    public class viewHolder extends RecyclerView.ViewHolder{
+    public class viewHolder extends RecyclerView.ViewHolder {
 
         NotificationRvDesignBinding binding;
 
@@ -114,8 +115,6 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             binding = NotificationRvDesignBinding.bind(itemView);
         }
     }
-
-
 
 
 }

@@ -149,10 +149,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, CommentActivity.class);
-                intent.putExtra("postId",post.getPostId());
-                intent.putExtra("postedBy",post.getPostBy());
-                Toast.makeText(context, post.getPostId()+"", Toast.LENGTH_SHORT).show();
-                Toast.makeText(context, post.getPostBy()+"", Toast.LENGTH_SHORT).show();
+                intent.putExtra("postId", post.getPostId());
+                intent.putExtra("postedBy", post.getPostBy());
+//                Toast.makeText(context, post.getPostId()+"", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, post.getPostBy()+"", Toast.LENGTH_SHORT).show();
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }

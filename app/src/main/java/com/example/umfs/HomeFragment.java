@@ -88,35 +88,35 @@ public class HomeFragment extends Fragment {
         return  binding.getRoot();
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (data.getData() != null){
-            Uri uri = data.getData();
-
-            final StorageReference reference = storage.getReference().child("posts")
-                    .child(FirebaseAuth.getInstance().getUid())
-                    .child(new Date().getTime()+"");
-            
-            reference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Post post = new Post();
-                    post.setPostImage(uri.toString());
-                    post.setPostBy(FirebaseAuth.getInstance().getUid());
-                    post.setPostedAt(new Date().getTime());
-
-                    database.getReference().child("posts")
-                            .push()
-                            .setValue(post).addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Toast.makeText(getContext(), "Post Uploaded", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
-            });
-        }
-    }
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//        if (data.getData() != null){
+//            Uri uri = data.getData();
+//
+//            final StorageReference reference = storage.getReference().child("posts")
+//                    .child(FirebaseAuth.getInstance().getUid())
+//                    .child(new Date().getTime()+"");
+//
+//            reference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//                @Override
+//                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                    Post post = new Post();
+//                    post.setPostImage(uri.toString());
+//                    post.setPostBy(FirebaseAuth.getInstance().getUid());
+//                    post.setPostedAt(new Date().getTime());
+//
+//                    database.getReference().child("posts")
+//                            .push()
+//                            .setValue(post).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                        @Override
+//                        public void onSuccess(Void aVoid) {
+//                            Toast.makeText(getContext(), "Post Uploaded", Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
+//                }
+//            });
+//        }
+//    }
 }

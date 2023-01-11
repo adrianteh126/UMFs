@@ -8,9 +8,9 @@
 
     <fragment
         android:id="@+id/DestPosts"
-        android:name="com.example.umfs.PostsFragment"
+        android:name="com.example.umfs.HomeFragment"
         android:label="Posts"
-        tools:layout="@layout/fragment_posts" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_DestPosts_to_createPostFragment"
             app:destination="@id/DestCreatePost" />
@@ -31,9 +31,8 @@
         tools:layout="@layout/activity_search" />
     <fragment
         android:id="@+id/DestNotification"
-        android:name="com.example.umfs.Notification"
-        android:label="Notification"
-        tools:layout="@layout/fragment_notification" />
+        android:name="com.example.umfs.NotificationFragment"
+        android:label="Notification" />
     <fragment
         android:id="@+id/DestMessage"
         android:name="com.example.umfs.MessageListFragment"
