@@ -2,7 +2,7 @@ package com.example.umfs;
 
 public class User {
 
-    private String siswam   ail;
+    private String siswamail;
     private String username;
     private String password;
     private String Bio;
