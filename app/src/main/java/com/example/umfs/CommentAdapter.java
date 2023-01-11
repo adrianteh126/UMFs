@@ -2,6 +2,7 @@ package com.example.umfs;
 
 import android.content.Context;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,10 +56,12 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.viewHold
                                 .placeholder(R.drawable.placeholder)
                                 .into(holder.binding.profileImage);
                         holder.binding.comment.setText(Html.fromHtml("<b>"+ user.getUsername() + "</b>" + "  " + comment.getCommentBody()));
+                        Log.d("Debug","shit");
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
+//                        System.out.println(error);
 
                     }
                 });

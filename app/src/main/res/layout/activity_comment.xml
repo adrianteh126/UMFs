@@ -110,18 +110,6 @@
                 app:layout_constraintStart_toEndOf="@+id/like"
                 app:layout_constraintTop_toTopOf="@+id/like" />
 
-            <TextView
-                android:id="@+id/share"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:drawableLeft="@drawable/ic_share"
-                android:drawablePadding="8dp"
-                android:text="Share"
-                app:layout_constraintStart_toEndOf="@+id/comment"
-                app:layout_constraintTop_toTopOf="@+id/comment" />
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/commentRv"
                 android:layout_width="match_parent"

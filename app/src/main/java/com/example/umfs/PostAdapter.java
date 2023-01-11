@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -49,6 +50,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder> {
                 .into(holder.binding.postImage);
         holder.binding.like.setText(post.getPostLike() + "");
         holder.binding.comment.setText(post.getCommentCount() + "");
+        holder.binding.postCategory.setText(post.getPostCategory());
+        holder.binding.tittle.setText(post.getPostTitle());
         Log.d("PostImage", "onBindViewHolder: " + post.getPostImage());
 
         String description = post.getPostDescription();
@@ -70,7 +73,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder> {
                                 .placeholder(R.drawable.placeholder)
                                 .into(holder.binding.profileImage);
                         holder.binding.name.setText(user.getUsername());
-                        holder.binding.profession.setText(user.Faculty);
+                        holder.binding.profession.setText(user.getFaculty());
+
                     }
 
                     @Override
@@ -147,6 +151,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder> {
                 Intent intent = new Intent(context, CommentActivity.class);
                 intent.putExtra("postId",post.getPostId());
                 intent.putExtra("postedBy",post.getPostBy());
+                Toast.makeText(context, post.getPostId()+"", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, post.getPostBy()+"", Toast.LENGTH_SHORT).show();
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }

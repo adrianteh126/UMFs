@@ -6,16 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".HomeFragment">
 
-    <Button
-        android:id="@+id/addPostBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add Post"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/postRV"
         android:layout_width="match_parent"
@@ -24,5 +14,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addPostBtn" />
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
