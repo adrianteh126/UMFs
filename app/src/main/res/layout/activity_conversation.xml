@@ -10,9 +10,10 @@
         android:id="@+id/conversation_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#01639A"
+        android:background="@color/dark_blue_1"
         android:paddingTop="10dp"
-        android:paddingBottom="10dp">
+        android:paddingBottom="10dp"
+        android:gravity="center">
 
         <!--        //back-->
 
@@ -22,8 +23,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
-            android:text=""
-            android:textSize="20dp" />
+            android:text="Username"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:padding="5dp"
+            />
 
     </LinearLayout>
 
@@ -39,7 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#B4FBFF"
+        android:background="@color/light_blue_1"
         android:paddingTop="10dp"
         android:paddingBottom="10dp">
 
@@ -55,7 +60,7 @@
 
         <ImageView
             android:id="@+id/sendBtn"
-            android:src="@drawable/ic_share"
+            android:src="@drawable/ic_baseline_send_24"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_alignParentEnd="true"
