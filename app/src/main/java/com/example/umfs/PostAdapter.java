@@ -70,7 +70,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder> {
                                 .placeholder(R.drawable.placeholder)
                                 .into(holder.binding.profileImage);
                         holder.binding.name.setText(user.getUsername());
-                        holder.binding.profession.setText(user.Faculty);
+                        holder.binding.profession.setText(user.getFaculty());
                     }
 
                     @Override
