@@ -118,7 +118,7 @@ public class RegisterActivity extends AppCompatActivity {
                         String id = task.getResult().getUser().getUid();
 
                         Map<String, Object> user = new HashMap<>();
-                        user.put(id, new User(siswamail,username,password));
+                        user.put(id, new User(id, siswamail,username,password));
 
                         userRef.updateChildren(user);
 

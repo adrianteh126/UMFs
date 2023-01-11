@@ -7,6 +7,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -186,7 +187,13 @@ public class EditProfileActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(Void unused) {
                             Toast.makeText(EditProfileActivity.this, "Profile Successfully Updated", Toast.LENGTH_SHORT).show();
-                            finish();
+//                            finish();
+                            Fragment frg = null;
+                            frg = getSupportFragmentManager().findFragmentByTag("ProfileFragment");
+                            final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                            ft.detach(frg);
+                            ft.attach(frg);
+                            ft.commit();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
