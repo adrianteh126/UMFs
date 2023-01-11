@@ -38,7 +38,7 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Uploads");
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("posts");
         RVSearchResults = findViewById(R.id.RVSearchResults);
         SVSearchResults = findViewById(R.id.SVSearchResults);
         IVTextToSpeech = findViewById(R.id.IVTextToSpeech);
@@ -85,7 +85,7 @@ public class SearchActivity extends AppCompatActivity {
                         for (DataSnapshot ds : snapshot.getChildren()) {
                             list.add(ds.getValue(Post.class));
                         }
-                        SearchAdapter searchAdapter = new SearchAdapter(list);
+                        SearchAdapter searchAdapter = new SearchAdapter(getApplicationContext(),list);
                         RVSearchResults.setAdapter(searchAdapter);
                         RVSearchResults.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                     }
@@ -128,7 +128,7 @@ public class SearchActivity extends AppCompatActivity {
             }
         }
 //        Log.d("Search_result","List: "+myList.toString());
-        SearchAdapter searchAdapter = new SearchAdapter(myList);
+        SearchAdapter searchAdapter = new SearchAdapter(getApplicationContext(),myList);
         RVSearchResults.setAdapter(searchAdapter);
         RVSearchResults.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
     }
