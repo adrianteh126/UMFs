@@ -55,6 +55,7 @@
             android:layout_width="300dp"
             android:layout_height="48dp"
             android:layout_gravity="center"
+
             android:contentDescription="Faculty List" />
 
         <TextView
@@ -86,11 +87,11 @@
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
             android:backgroundTint="@color/light_orange_1"
-            android:text="Create Profile"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:letterSpacing="0"
+            android:text="Create Profile"
             android:textAllCaps="false"
-            android:textSize="15dp"  />
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textSize="15dp" />
 
 
     </LinearLayout>

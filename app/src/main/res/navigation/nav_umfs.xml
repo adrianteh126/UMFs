@@ -15,9 +15,6 @@
             android:id="@+id/action_DestPosts_to_createPostFragment"
             app:destination="@id/DestCreatePost" />
         <action
-            android:id="@+id/action_DestPosts_to_DestMessage2"
-            app:destination="@id/DestMessage" />
-        <action
             android:id="@+id/action_DestPosts_to_DestProfile2"
             app:destination="@id/DestProfile" />
         <action
