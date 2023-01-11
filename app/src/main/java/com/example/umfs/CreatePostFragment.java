@@ -290,9 +290,11 @@ public class CreatePostFragment extends Fragment {
                                     },500);
                                     Toast.makeText(getContext(), "Upload successfully", Toast.LENGTH_SHORT).show();
                                     String postId = databaseReference.push().getKey();
-                                    Post post = new Post(uri.toString()
+                                    Post post = new Post(postId
+                                            ,uri.toString()
                                             ,((Category)SpnrCategory.getSelectedItem()).getCategory()
                                             ,firebaseUser.getUid()
+                                            ,TVUserID.getText().toString()
                                             ,ETTitle.getText().toString()
                                             ,ETContent.getText().toString()
                                             ,System.currentTimeMillis());
