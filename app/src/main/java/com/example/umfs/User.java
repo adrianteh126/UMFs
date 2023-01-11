@@ -2,6 +2,7 @@ package com.example.umfs;
 
 public class User {
 
+    private String userUID;
     private String siswamail;
     private String username;
     private String password;
@@ -12,7 +13,9 @@ public class User {
     public User() {
     }
 
-    public User(String siswamail, String username, String password) {
+
+    public User(String uid, String siswamail, String username, String password) {
+        this.userUID = uid;
         this.siswamail = siswamail;
         this.username = username;
         this.password = password;
@@ -73,5 +76,13 @@ public class User {
 
     public void setProfilePicture(String profilePicture) {
         ProfilePicture = profilePicture;
+    }
+
+    public String getUserUID() {
+        return userUID;
+    }
+
+    public void setUserUID(String userUID) {
+        this.userUID = userUID;
     }
 }
