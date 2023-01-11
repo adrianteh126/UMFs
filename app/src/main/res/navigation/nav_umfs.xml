@@ -10,7 +10,20 @@
         android:id="@+id/DestPosts"
         android:name="com.example.umfs.PostsFragment"
         android:label="Posts"
-        tools:layout="@layout/fragment_posts" />
+        tools:layout="@layout/fragment_posts" >
+        <action
+            android:id="@+id/action_DestPosts_to_createPostFragment"
+            app:destination="@id/DestCreatePost" />
+        <action
+            android:id="@+id/action_DestPosts_to_DestMessage2"
+            app:destination="@id/DestMessage" />
+        <action
+            android:id="@+id/action_DestPosts_to_DestProfile2"
+            app:destination="@id/DestProfile" />
+        <action
+            android:id="@+id/action_DestPosts_to_DestNotification2"
+            app:destination="@id/DestNotification" />
+    </fragment>
     <activity
         android:id="@+id/DestSearch"
         android:name="com.example.umfs.SearchActivity"

@@ -18,7 +18,14 @@ public class User {
         this.password = password;
     }
 
-
+    public User(String siswamail, String username, String password, String bio, String faculty, String profilePicture) {
+        this.siswamail = siswamail;
+        this.username = username;
+        this.password = password;
+        Bio = bio;
+        Faculty = faculty;
+        ProfilePicture = profilePicture;
+    }
 
     public String getSiswamail() {
         return siswamail;

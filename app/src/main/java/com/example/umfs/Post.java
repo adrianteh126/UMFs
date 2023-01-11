@@ -2,7 +2,6 @@ package com.example.umfs;
 
 public class Post {
 
-    private String postUrl; // generate by database reference
     private String postImage; //store uri.toString(), use this string to retrieve the img, via glide | ref:https://bumptech.github.io/glide/
     private String postCategory;
     private String postBy; //store userId
@@ -13,8 +12,7 @@ public class Post {
     private int postLike;
     private int commentCount;
 
-    public Post(String postUrl, String postImage, String postCategory, String postBy, String postTitle, String postDescription, long postedAt) {
-        this.postUrl = postUrl;
+    public Post( String postImage, String postCategory, String postBy, String postTitle, String postDescription, long postedAt) {
         this.postImage = postImage;
         this.postCategory = postCategory;
         this.postBy = postBy;
@@ -26,13 +24,7 @@ public class Post {
     public Post() {
     }
 
-    public String getPostUrl() {
-        return postUrl;
-    }
 
-    public void setPostUrl(String postUrl) {
-        this.postUrl = postUrl;
-    }
 
     public String getPostImage() {
         return postImage;
