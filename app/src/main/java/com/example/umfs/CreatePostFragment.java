@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,8 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -74,11 +77,14 @@ public class CreatePostFragment extends Fragment {
     private Button BtnUploadImage;
     private ProgressBar PBUpload;
     private ImageView IVUpload;
+    private TextView TVUserFaculty;
+
 
     private Uri UriImage;
 
     private StorageReference storageReference;
     private DatabaseReference databaseReference;
+    private FirebaseUser firebaseUser;
 
     private StorageTask uploadTask;
 
@@ -125,6 +131,7 @@ public class CreatePostFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
+        TVUserID = view.findViewById(R.id.TVUserID);
         SpnrCategory = view.findViewById(R.id.SpnrCategory);
         BtnPost = view.findViewById(R.id.BtnPost);
         BtnUploadImage = view.findViewById(R.id.BtnUploadImage);
@@ -132,16 +139,54 @@ public class CreatePostFragment extends Fragment {
         ETTitle = view.findViewById(R.id.ETTitle);
         ETContent = view.findViewById(R.id.ETContent);
         IVUpload = view.findViewById(R.id.IVUpload);
+        TVUserFaculty = view.findViewById(R.id.TVUserFaculty);
+        IVUserProfilePicture = view.findViewById(R.id.IVUserProfilePicture);
 
-        storageReference = FirebaseStorage.getInstance().getReference("Uploads");
-        databaseReference = FirebaseDatabase.getInstance().getReference("Uploads");
+        storageReference = FirebaseStorage.getInstance().getReference("posts");
+        databaseReference = FirebaseDatabase.getInstance().getReference("posts");
+        
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        }
+        else {
+            Toast.makeText(getContext(), "User is not log in, unable to retrieve user data", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getContext(),LoginActivity.class);
+            startActivity(intent);
+        }
+
+        //fetch current user details
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("Users");
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    if (dataSnapshot.getKey().equalsIgnoreCase(firebaseUser.getUid())) {
+                        User user = new User(dataSnapshot.child("siswamail").getValue().toString()
+                                ,dataSnapshot.child("username").getValue().toString()
+                                ,dataSnapshot.child("password").getValue().toString()
+                                ,dataSnapshot.child("Bio").getValue().toString()
+                                ,dataSnapshot.child("Faculty").getValue().toString()
+                                ,dataSnapshot.child("ProfilePicture").getValue().toString());
+                        TVUserID.setText(user.getUsername());
+                        TVUserFaculty.setText(user.getFaculty());
+                        Picasso.get()
+                                .load(user.getProfilePicture())
+                                .placeholder(R.drawable.placeholder)
+                                .into(IVUserProfilePicture);
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         BtnUploadImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openFileChooser();
             }
-
             private void openFileChooser() {
                 Intent intent = new Intent();
                 intent.setType("image/*");
@@ -167,7 +212,7 @@ public class CreatePostFragment extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 //On selecting a spinner item
                 String item = adapterView.getItemAtPosition(i).toString();
-                Toast.makeText(adapterView.getContext(), "Selected: "+item, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(adapterView.getContext(), "Selected: "+item, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -184,6 +229,7 @@ public class CreatePostFragment extends Fragment {
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Attaching data adapter to spinner
         SpnrCategory.setAdapter(arrayAdapter);
+
 
 
     }
@@ -244,9 +290,9 @@ public class CreatePostFragment extends Fragment {
                                     },500);
                                     Toast.makeText(getContext(), "Upload successfully", Toast.LENGTH_SHORT).show();
                                     String postId = databaseReference.push().getKey();
-                                    Post post = new Post(uri.toString(),UriImage.toString()
+                                    Post post = new Post(uri.toString()
                                             ,((Category)SpnrCategory.getSelectedItem()).getCategory()
-                                            ,"User_ID"
+                                            ,firebaseUser.getUid()
                                             ,ETTitle.getText().toString()
                                             ,ETContent.getText().toString()
                                             ,System.currentTimeMillis());
