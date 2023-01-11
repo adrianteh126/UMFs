@@ -5,6 +5,7 @@ public class Post {
     private String postImage; //store uri.toString(), use this string to retrieve the img, via glide | ref:https://bumptech.github.io/glide/
     private String postCategory;
     private String postBy; //store userId
+    private String postUserName; //store String UserID/ UserName
     private String postTitle; // store post title
     private String postDescription; //store description
     private long postedAt; //store post time : System.currentTimeMillis()
@@ -12,10 +13,13 @@ public class Post {
     private int postLike;
     private int commentCount;
 
-    public Post( String postImage, String postCategory, String postBy, String postTitle, String postDescription, long postedAt) {
+
+    public Post(String postID, String postImage, String postCategory, String postBy, String postUserName, String postTitle, String postDescription, long postedAt) {
+        this.postId = postID;
         this.postImage = postImage;
         this.postCategory = postCategory;
         this.postBy = postBy;
+        this.postUserName = postUserName;
         this.postTitle = postTitle;
         this.postDescription = postDescription;
         this.postedAt = postedAt;
@@ -24,7 +28,13 @@ public class Post {
     public Post() {
     }
 
+    public String getPostUserName() {
+        return postUserName;
+    }
 
+    public void setPostUserName(String postUserName) {
+        this.postUserName = postUserName;
+    }
 
     public String getPostImage() {
         return postImage;
@@ -97,4 +107,5 @@ public class Post {
     public void setCommentCount(int commentCount) {
         this.commentCount = commentCount;
     }
+
 }

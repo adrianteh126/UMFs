@@ -1,5 +1,7 @@
 package com.example.umfs;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,15 +12,23 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+
 import java.util.ArrayList;
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHolder> {
 
+    Context context;
     public ArrayList<Post> list;
+    private DatabaseReference databaseReference;
+    private FirebaseUser firebaseUser;
 
-    public SearchAdapter(ArrayList<Post> list) {
+    public SearchAdapter(Context context,ArrayList<Post> list) {
+        this.context = context;
         this.list = list;
     }
+
 
     @NonNull
     @Override
@@ -29,16 +39,21 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
+        Post post = list.get(position);
         holder.LLSearchCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO: when the search card is click, then navigate to that specific post
-                Toast.makeText(v.getContext(),"The search card is clicked", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, CommentActivity.class);
+                intent.putExtra("postId", post.getPostId());
+                intent.putExtra("postedBy", post.getPostBy());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                v.getContext().startActivity(intent);
+                Toast.makeText(context,"The search card is clicked", Toast.LENGTH_SHORT).show();
             }
         });
 
-        holder.TVSearchCardUserID.setText(list.get(position).getPostBy());
+        holder.TVSearchCardUserID.setText(list.get(position).getPostUserName());
         holder.TVSearchCardCategory.setText(list.get(position).getPostCategory());
         holder.TVSearchCardTitle.setText(list.get(position).getPostTitle());
         holder.TVSearchCardDesc.setText(list.get(position).getPostDescription());
