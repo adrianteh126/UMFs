@@ -273,7 +273,6 @@ public class SetupProfileActivity extends AppCompatActivity implements AdapterVi
             Toast.makeText(SetupProfileActivity.this, "Failed to Upload Profile Data", Toast.LENGTH_LONG).show();
         }
     }
-
     private void chooseFile() {
         try{
             Intent intent = new Intent();
