@@ -75,7 +75,6 @@ public class SearchActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        //update the Deal data into the list
         if(databaseReference != null) {
             databaseReference.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -85,9 +84,6 @@ public class SearchActivity extends AppCompatActivity {
                         for (DataSnapshot ds : snapshot.getChildren()) {
                             list.add(ds.getValue(Post.class));
                         }
-                        SearchAdapter searchAdapter = new SearchAdapter(getApplicationContext(),list);
-                        RVSearchResults.setAdapter(searchAdapter);
-                        RVSearchResults.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                     }
                 }
                 @Override
@@ -115,19 +111,14 @@ public class SearchActivity extends AppCompatActivity {
     public void search(String queryText){
         ArrayList<Post> myList = new ArrayList<>();
         for(Post post : list) {
-//            Log.d("Search_condition","deal.getDealDesc().toLowerCase()="+deal.getDealDesc().toLowerCase()
-//                    +"\nqueryText.toLowerCase()="+queryText.toLowerCase()
-//                    +"\n^ is true:"+deal.getDealDesc().toLowerCase().contains(queryText.toLowerCase()));
             if (post.getPostDescription().toLowerCase().contains(queryText.toLowerCase())
                 || post.getPostTitle().toLowerCase().contains(queryText.toLowerCase())
                 || post.getPostCategory().toLowerCase().contains(queryText.toLowerCase())
                 || post.getPostBy().toLowerCase().contains(queryText.toLowerCase()) )
             {
                 myList.add(post);
-//                Log.d("Search_added","Added : "+deal);
             }
         }
-//        Log.d("Search_result","List: "+myList.toString());
         SearchAdapter searchAdapter = new SearchAdapter(getApplicationContext(),myList);
         RVSearchResults.setAdapter(searchAdapter);
         RVSearchResults.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
