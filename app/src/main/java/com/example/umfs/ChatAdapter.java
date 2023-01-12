@@ -21,6 +21,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.IOException;
@@ -65,7 +66,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder> 
         User user = userList.get(position);
         holder.name.setText(user.getUsername());
         holder.email.setText(user.getSiswamail());
-        StorageReference storageReference = FirebaseStorage.getInstance().getReference("images/" + user.getProfilePicture());
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference("ProfilePicture/" + user.getProfilePicture());
         try {
             File localfile = File.createTempFile("Temp File", ".jpg");
             storageReference.getFile(localfile)
@@ -74,7 +75,8 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder> 
                         public void onComplete(@NonNull Task<FileDownloadTask.TaskSnapshot> task) {
 
                             Bitmap bitmap = BitmapFactory.decodeFile(localfile.getAbsolutePath());
-                            holder.profile_pic.setImageBitmap(bitmap);
+                            //holder.profile_pic.setImageBitmap(bitmap);
+                            Picasso.get().load(user.getProfilePicture()).into(holder.profile_pic);
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override

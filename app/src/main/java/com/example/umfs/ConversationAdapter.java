@@ -47,12 +47,12 @@ public class ConversationAdapter extends RecyclerView.Adapter<ConversationAdapte
         MessageModel messageModel = messageModelList.get(position);
         holder.msg.setText(messageModel.getMessage());
         if (messageModel.getSenderId().equals(FirebaseAuth.getInstance().getUid())){
-            holder.msg.setTextColor(context.getResources().getColor(R.color.white));
-            holder.main.setBackgroundColor(context.getResources().getColor(R.color.dark_blue_1));
+            holder.msg.setTextColor(context.getResources().getColor(R.color.black));
+            holder.main.setBackgroundColor(context.getResources().getColor(R.color.light_blue_1));
         }
         else{
-            holder.main.setBackgroundColor(context.getResources().getColor(R.color.black));
-            holder.msg.setTextColor(context.getResources().getColor(R.color.white));
+            holder.main.setBackgroundColor(context.getResources().getColor(R.color.light_grey_1));
+            holder.msg.setTextColor(context.getResources().getColor(R.color.black));
         }
     }
 

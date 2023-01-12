@@ -9,7 +9,7 @@
     android:id="@+id/mainMessageLayout"
     >
 
-    <androidx.cardview.widget.CardView
+    <LinearLayout
         android:id="@+id/CVProfilePicPage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,10 +22,8 @@
             android:id="@+id/message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FDC2BF"
             android:padding="20dp"
-            android:text="message"
-            />
-    </androidx.cardview.widget.CardView>
+            android:text="message" />
+    </LinearLayout>
 
 </LinearLayout>
