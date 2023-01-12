@@ -1,20 +1,17 @@
 package com.example.umfs;
 
-import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
-import android.widget.ImageView;
+import android.widget.TextView;
 
-import com.example.umfs.databinding.ActivityChatBinding;
-import com.example.umfs.databinding.FragmentHomeBinding;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.example.umfs.databinding.FragmentMessageListBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -35,6 +32,8 @@ public class MessageListFragment extends Fragment {
     private FirebaseAuth mAuth;
     private ChatAdapter chatAdapter;
     private AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
+    TextView TVToolbarTitle;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -80,7 +79,6 @@ public class MessageListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
         binding  = FragmentMessageListBinding.inflate(inflater, container, false);
         binding= FragmentMessageListBinding.inflate(getLayoutInflater());
         mAuth= FirebaseAuth.getInstance();
@@ -88,16 +86,6 @@ public class MessageListFragment extends Fragment {
         databaseReference= FirebaseDatabase.getInstance().getReference("Users");
         chatAdapter=new ChatAdapter(getContext());
         binding.messageRecycleView.setLayoutManager(new LinearLayoutManager(getContext()));
-        ImageView chat_back = binding.chatBack;
-        chat_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                view.startAnimation(buttonClick);
-                Intent intent = new Intent(getContext(),MainActivity.class);
-                startActivity(intent);
-            }
-        });
-
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -119,5 +107,12 @@ public class MessageListFragment extends Fragment {
             }
         });
         return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        TVToolbarTitle = getView().getRootView().findViewById(R.id.TVToolbarTitle);
+        TVToolbarTitle.setText("Inbox");
     }
 }

@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:maxWidth="315dp"
                 android:layout_height="40dp"
-                android:queryHint="On Trending: FIFA 2022.."
+                android:queryHint="Search in UMFs.."
                 android:iconifiedByDefault="false"
                 android:background="@drawable/border_menu"
                 />
@@ -42,20 +42,7 @@
                     android:background="@drawable/border_menu"
                     />
 
-
-
         </androidx.appcompat.widget.Toolbar>
-
-<!--        <androidx.fragment.app.FragmentContainerView-->
-<!--            android:id="@+id/NHFSearch"-->
-<!--            android:name="androidx.navigation.fragment.NavHostFragment"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="0dp"-->
-<!--            android:layout_weight="1"-->
-<!--            app:defaultNavHost="true"-->
-<!--            app:navGraph="@navigation/nav_search"-->
-<!--            android:layout_margin="25dp"-->
-<!--            />-->
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/RVSearchResults"
