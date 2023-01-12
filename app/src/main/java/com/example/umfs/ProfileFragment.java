@@ -44,6 +44,7 @@ public class ProfileFragment extends Fragment {
     FirebaseDatabase databaseRoot;  //access to UMFs realtime database @ firebase
     DatabaseReference databaseReference;    //reference to node under UMFs database aka Users node
     DatabaseReference userRef;  //reference to specific user under "Users" node
+    TextView TVToolbarTitle;
 
 
     private boolean shouldRefreshOnResume = false;
@@ -105,6 +106,10 @@ public class ProfileFragment extends Fragment {
         final TextView TVUsernameProfile = view.findViewById(R.id.TVUsernameProfile);
         final TextView TVFacultyProfile = view.findViewById(R.id.TVFacultyProfile);
         final TextView TVBioProfile = view.findViewById(R.id.TVBioProfile);
+
+        TVToolbarTitle = getView().getRootView().findViewById(R.id.TVToolbarTitle);
+        TVToolbarTitle.setText("Profile");
+
 
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
         String currentUserID = currentUser.getUid();

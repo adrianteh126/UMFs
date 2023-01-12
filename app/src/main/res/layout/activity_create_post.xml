@@ -38,18 +38,6 @@
                     android:layout_gravity="center"
                     />
 
-<!--                The button in action bar is moved into the fragment, refer fragment_create_post.xml-->
-<!--                <Button-->
-<!--                    android:id="@+id/BtnPost"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="POST"-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:backgroundTint="@color/light_orange_1"-->
-<!--                    android:layout_marginHorizontal="20dp"-->
-<!--                    android:layout_gravity="end"-->
-<!--                    />-->
-
         </androidx.appcompat.widget.Toolbar>
 
         <androidx.fragment.app.FragmentContainerView
@@ -61,7 +49,6 @@
             app:defaultNavHost="true"
             />
 
-        <!-- The bottom menu need modify -->
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNav"
             android:layout_width="match_parent"
