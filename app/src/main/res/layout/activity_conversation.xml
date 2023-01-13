@@ -15,7 +15,7 @@
         android:paddingBottom="10dp"
         android:gravity="center">
 
-        <!--        //back-->
+        <!--        back-->
 
         <TextView
             android:id="@+id/name_chat"
@@ -26,7 +26,7 @@
             android:text="Username"
             android:textSize="20dp"
             android:textStyle="bold"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:padding="5dp"
             />
 
@@ -56,7 +56,7 @@
             android:textSize="14sp"
             android:layout_marginEnd="10dp"
             android:layout_marginStart="20dp"
-            android:hint="Type something..."/>
+            android:hint="Enter message..."/>
 
         <ImageView
             android:id="@+id/sendBtn"
