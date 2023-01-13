@@ -39,46 +39,66 @@
                 app:srcCompat="@drawable/man" />
         </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:id="@+id/TVFaculty"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="25dp"
-            android:fontFamily="@font/inter_medium"
-            android:text="Faculty"
-            android:textColor="@color/black"
-            android:textSize="15dp" />
+            android:orientation="vertical">
 
-        <Spinner
-            android:id="@+id/SpinnerFaculty"
-            android:layout_width="300dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center"
+            <TextView
+                android:id="@+id/TVFaculty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
-            android:contentDescription="Faculty List" />
+                android:layout_marginTop="25dp"
+                android:fontFamily="@font/inter_medium"
+                android:text="Faculty"
+                android:textColor="@color/black"
+                android:textSize="15dp" />
 
-        <TextView
-            android:id="@+id/TVBio"
+            <Spinner
+                android:id="@+id/SpinnerFaculty"
+                android:layout_width="300dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:contentDescription="Faculty List"
+
+                android:elevation="10dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="30dp"
-            android:fontFamily="@font/inter_medium"
-            android:text="Bio"
-            android:textColor="@color/black"
-            android:textSize="15dp" />
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/TVBio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/inter_medium"
+                android:text="Bio"
+                android:textColor="@color/black"
+                android:textSize="15dp" />
 
 
-        <EditText
-            android:id="@+id/ETBioSetup"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:ems="10"
-            android:hint="Bio"
-            android:inputType="textMultiLine"
-            android:minHeight="48dp" />
+            <EditText
+                android:id="@+id/ETBioSetup"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:hint="Bio"
+                android:inputType="textMultiLine"
+                android:minHeight="48dp" />
+
+        </LinearLayout>
+
+
+
 
         <Button
             android:id="@+id/BTCreateProfile"

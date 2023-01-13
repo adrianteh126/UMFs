@@ -16,53 +16,97 @@
 
         android:layout_centerInParent="true"
         android:layout_gravity="center_horizontal"
-
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="33dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginEnd="34dp"
         android:background="@drawable/view_profile"
         android:elevation="10dp"
         android:orientation="vertical">
 
-
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="80dp"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/BTFeedbackIcon"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:backgroundTint="@color/transparent"
+                android:fontFamily="@font/calistoga"
+                android:text="umfriends1949@gmail.com"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textIsSelectable="true"
+                android:textSize="20dp" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="40dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/IVWarning"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-
                 android:background="#00000000"
                 android:scaleType="fitCenter"
                 android:src="@drawable/feedback"
                 tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
-            <Button
+            <TextView
                 android:id="@+id/BTFeedback"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:backgroundTint="@color/transparent"
                 android:text="Feedback"
-                android:textAlignment="0"
-                android:textAllCaps="false"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="260dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:backgroundTint="@color/transparent"
+                android:text="Your Feedback Matters To Us. Let us know any improvement we can make. "
+
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="12dp" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
             android:layout_marginTop="20dp"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/BTHelpSupportIcon"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -71,27 +115,76 @@
                 android:src="@drawable/question"
                 tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
-            <Button
+            <TextView
                 android:id="@+id/BTHelpSupport"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:backgroundTint="@color/transparent"
                 android:text="Help and Support"
-                android:textAlignment="0"
-                android:textAllCaps="false"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="260dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Just send us an email and we will get back
+to you right away! :)"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="12dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/IVWagrning"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="#00000000"
+                android:scaleType="fitCenter"
+                android:src="@drawable/warning"
+                tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/Warning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="If you see any unappropriated content, please report to our email. "
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="13dp" />
 
 
         </LinearLayout>
 
         <Button
             android:id="@+id/BTLogOut"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="@color/light_orange_1"
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="100dp"
+            android:backgroundTint="@color/light_orange_1"
             android:text="LOG OUT" />
 
 
