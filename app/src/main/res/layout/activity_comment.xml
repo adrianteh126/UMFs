@@ -53,7 +53,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
                 android:background="@drawable/right_round_bg"
                 android:fontFamily="@font/roboto"
                 android:paddingStart="10dp"
@@ -62,13 +61,16 @@
                 android:paddingBottom="3dp"
                 android:text="TextView"
                 android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/profileImage"
                 app:layout_constraintStart_toEndOf="@+id/profileImage"
-                app:layout_constraintTop_toTopOf="@+id/profileImage" />
+                app:layout_constraintTop_toTopOf="@+id/profileImage"
+                app:layout_constraintVertical_bias="0.468" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profileImage"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginBottom="8dp"
                 android:src="@drawable/walpaper"
@@ -82,31 +84,33 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="32dp"
                 android:text="TextView"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/postImage" />
 
             <TextView
                 android:id="@+id/like"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_width="0dp"
+                android:layout_height="23dp"
+                android:layout_marginTop="8dp"
                 android:drawableLeft="@drawable/ic_like"
                 android:drawablePadding="8dp"
                 android:text="Like"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="@+id/description"
                 app:layout_constraintTop_toBottomOf="@+id/description" />
 
             <TextView
                 android:id="@+id/comment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
+                android:layout_width="119dp"
+                android:layout_height="23dp"
+                android:layout_marginStart="5dp"
                 android:drawableLeft="@drawable/ic_chat"
                 android:drawablePadding="8dp"
                 android:text="Comment"
+                android:textSize="16sp"
                 app:layout_constraintStart_toEndOf="@+id/like"
                 app:layout_constraintTop_toTopOf="@+id/like" />
 
@@ -115,7 +119,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:layout_marginEnd="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -123,6 +127,21 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/like"
                 app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/roboto_black"
+                android:text="TextView"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/description"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/postImage"
+                app:layout_constraintVertical_bias="1.0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -144,23 +163,25 @@
 
     <EditText
         android:id="@+id/commentET"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="363dp"
+        android:layout_height="50dp"
         android:background="@android:color/transparent"
         android:ems="10"
         android:hint="  Write A Coment"
         android:inputType="textPersonName"
         android:paddingTop="3dp"
         android:paddingBottom="10dp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/commentPostBtn"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/view6" />
 
     <ImageView
         android:id="@+id/commentPostBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
+        android:layout_width="42dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/commentET"
         app:layout_constraintEnd_toEndOf="@+id/view6"
         app:layout_constraintTop_toTopOf="@+id/commentET"

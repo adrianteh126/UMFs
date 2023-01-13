@@ -21,6 +21,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Map;
 
 public class CommentActivity extends AppCompatActivity {
 
@@ -28,6 +29,7 @@ public class CommentActivity extends AppCompatActivity {
     Intent intent;
     String postId;
     String postedBy;
+    String postLike;
     FirebaseDatabase database;
     FirebaseAuth auth;
     ArrayList<Comment> list = new ArrayList<>();
@@ -44,9 +46,12 @@ public class CommentActivity extends AppCompatActivity {
 
         postId = intent.getStringExtra("postId");
         postedBy = intent.getStringExtra("postedBy");
-
+        postLike = intent.getStringExtra("postLike");
+//        System.out.println("showbug" + postLike);
+//        Log.d("show postlike", postLike);
 //        Toast.makeText(this,"Post ID:" + postId, Toast.LENGTH_SHORT).show();
 //        Toast.makeText(this,"User ID:" + postedBy, Toast.LENGTH_SHORT).show();
+
 
         database.getReference()
                 .child("posts")
@@ -61,10 +66,74 @@ public class CommentActivity extends AppCompatActivity {
                                 .placeholder(R.drawable.placeholder)
                                 .into(binding.postImage);
                         binding.description.setText(post.getPostDescription());
-                        binding.like.setText(post.getPostLike()+"");
-                        binding.comment.setText(post.getCommentCount()+"");
+                        binding.like.setText(post.getPostLike() + "");
+                        binding.comment.setText(post.getCommentCount() + "");
+                        binding.title.setText(post.getPostTitle());
 
 
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
+        FirebaseDatabase.getInstance().getReference()
+                .child("posts")
+                .child(postId)
+                .child("likes")
+                .child(FirebaseAuth.getInstance().getUid())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                        if (snapshot.exists()) {
+                            binding.like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_heart_2, 0, 0, 0);
+
+                        } else {
+                            binding.like.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    FirebaseDatabase.getInstance().getReference()
+                                            .child("posts")
+                                            .child(postId)
+                                            .child("likes")
+                                            .child(FirebaseAuth.getInstance().getUid())
+                                            .setValue(true).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void unused) {
+                                                    FirebaseDatabase.getInstance().getReference()
+                                                            .child("posts")
+                                                            .child(postId)
+                                                            .child("postLike")
+                                                            .setValue((FirebaseDatabase.getInstance().getReference().child("posts").child(postId).get("postLike").toString()) + 1).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                @Override
+                                                                public void onSuccess(Void unused) {
+                                                                    binding.like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_heart_2, 0, 0, 0);
+
+                                                                    Notification notification = new Notification();
+                                                                    notification.setNotificationBy(FirebaseAuth.getInstance().getUid());
+                                                                    notification.setNotificationAt(new Date().getTime());
+                                                                    notification.setPostID(postId);
+                                                                    notification.setNotificationBy(postedBy);
+                                                                    notification.setType("like");
+
+                                                                    FirebaseDatabase.getInstance().getReference()
+                                                                            .child("notification")
+                                                                            .child(postedBy)
+                                                                            .push()
+                                                                            .setValue(notification);
+
+                                                                }
+                                                            });
+                                                }
+                                            });
+
+                                }
+                            });
+                        }
 
                     }
 
@@ -117,7 +186,7 @@ public class CommentActivity extends AppCompatActivity {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                                 int commentCount = 0;
-                                                if (snapshot.exists()){
+                                                if (snapshot.exists()) {
                                                     commentCount = snapshot.getValue(Integer.class);
                                                 }
                                                 database.getReference()
@@ -158,7 +227,7 @@ public class CommentActivity extends AppCompatActivity {
             }
         });
 
-        CommentAdapter adapter = new CommentAdapter(this,list);
+        CommentAdapter adapter = new CommentAdapter(this, list);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         binding.commentRv.setLayoutManager(layoutManager);
         binding.commentRv.setAdapter(adapter);
@@ -170,7 +239,7 @@ public class CommentActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         list.clear();
-                        for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                             Comment comment = dataSnapshot.getValue(Comment.class);
                             list.add(comment);
                         }

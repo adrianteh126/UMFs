@@ -52,7 +52,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder> {
         holder.binding.comment.setText(post.getCommentCount() + "");
         holder.binding.postCategory.setText(post.getPostCategory());
         holder.binding.tittle.setText(post.getPostTitle());
-        Log.d("PostImage", "onBindViewHolder: " + post.getPostImage());
 
         String description = post.getPostDescription();
         if (description.equals("")) {
@@ -151,6 +150,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder> {
                 Intent intent = new Intent(context, CommentActivity.class);
                 intent.putExtra("postId", post.getPostId());
                 intent.putExtra("postedBy", post.getPostBy());
+                intent.putExtra("postLike", post.getPostLike());
 //                Toast.makeText(context, post.getPostId()+"", Toast.LENGTH_SHORT).show();
 //                Toast.makeText(context, post.getPostBy()+"", Toast.LENGTH_SHORT).show();
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
