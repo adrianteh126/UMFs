@@ -1,7 +1,6 @@
 package com.example.umfs;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -17,8 +16,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.UUID;
 
 public class ConversationActivity extends AppCompatActivity {
 
@@ -75,14 +72,6 @@ public class ConversationActivity extends AppCompatActivity {
             }
         });
 
-//        binding.conversationBackButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                view.startAnimation(buttonClick);
-//                Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
-//                startActivity(intent);
-//            }
-//        });
     }
 
     private void sendMessage(String message, String receiverRoom, String senderRoom) {
@@ -105,7 +94,6 @@ public class ConversationActivity extends AppCompatActivity {
                     databaseReferenceReceiver.child(key).setValue(messageModel);
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 

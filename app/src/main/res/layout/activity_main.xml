@@ -18,10 +18,28 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/TBMainAct"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            android:minHeight="?attr/actionBarSize"
-            />
+            >
+            <ImageView
+                android:id="@+id/IVToolbarLogo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/umf_logo"
+                android:padding="8dp"
+                android:layout_marginLeft="15dp"
+                />
+            <TextView
+                android:id="@+id/TVToolbarTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Title Here"
+                android:textSize="25sp"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                />
+        </androidx.appcompat.widget.Toolbar>
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/NHFMain"
@@ -42,13 +60,5 @@
             />
 
     </LinearLayout>
-
-<!--    <com.google.android.material.navigation.NavigationView-->
-<!--        android:id="@+id/sideNav"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="match_parent"-->
-<!--        app:menu="@menu/menu_side"-->
-<!--        android:layout_gravity="start"-->
-<!--        />-->
 
 </androidx.drawerlayout.widget.DrawerLayout>

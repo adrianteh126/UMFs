@@ -161,7 +161,6 @@ public class SetupProfileActivity extends AppCompatActivity implements AdapterVi
                 else{
                     uploadNullProfilePicture();
                 }
-                uploadProfile();
             }
         });
 
@@ -198,8 +197,8 @@ public class SetupProfileActivity extends AppCompatActivity implements AdapterVi
                                 Map<String, Object> picUpdates = new HashMap<>();
                                 picUpdates.put("ProfilePicture", imageUrl);
                                 userRef.updateChildren(picUpdates);
-
-                                Toast.makeText(SetupProfileActivity.this, "Upload Successful", Toast.LENGTH_LONG).show();
+                                Toast.makeText(SetupProfileActivity.this, "Profile Picture Uploaded", Toast.LENGTH_LONG).show();
+                                uploadProfile();
                             }
                         });
                     }
@@ -231,8 +230,8 @@ public class SetupProfileActivity extends AppCompatActivity implements AdapterVi
                                         Map<String, Object> picUpdates = new HashMap<>();
                                         picUpdates.put("ProfilePicture", imageUrl);
                                         userRef.updateChildren(picUpdates);
-
-                                        Toast.makeText(SetupProfileActivity.this, "Upload Successful", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(SetupProfileActivity.this, "Profile Picture Uploaded", Toast.LENGTH_LONG).show();
+                                        uploadProfile();;
                                     }
                                 });
                             }

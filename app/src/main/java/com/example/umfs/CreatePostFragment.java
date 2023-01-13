@@ -78,6 +78,7 @@ public class CreatePostFragment extends Fragment {
     private ProgressBar PBUpload;
     private ImageView IVUpload;
     private TextView TVUserFaculty;
+    private TextView TVToolbarTitle;
 
 
     private Uri UriImage;
@@ -144,7 +145,10 @@ public class CreatePostFragment extends Fragment {
 
         storageReference = FirebaseStorage.getInstance().getReference("posts");
         databaseReference = FirebaseDatabase.getInstance().getReference("posts");
-        
+
+        TVToolbarTitle = getView().getRootView().findViewById(R.id.TVToolbarTitle);
+        TVToolbarTitle.setText("Create Post");
+
         if (FirebaseAuth.getInstance().getCurrentUser() != null) {
             firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         }
@@ -229,10 +233,8 @@ public class CreatePostFragment extends Fragment {
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Attaching data adapter to spinner
         SpnrCategory.setAdapter(arrayAdapter);
-
-
-
     }
+
 
     public void getCategories() {
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("Categories");
@@ -299,6 +301,8 @@ public class CreatePostFragment extends Fragment {
                                             ,ETContent.getText().toString()
                                             ,System.currentTimeMillis());
                                     databaseReference.child(postId).setValue(post);
+                                    //After upload successfully, back to home page
+                                    startActivity(new Intent(getContext(),MainActivity.class));
                                 }
                             });
                         }
@@ -321,5 +325,6 @@ public class CreatePostFragment extends Fragment {
             Toast.makeText(getContext(), "No file selected", Toast.LENGTH_SHORT).show();
         }
     }
+
 
 }

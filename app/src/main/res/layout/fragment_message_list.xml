@@ -6,30 +6,6 @@
     android:orientation="vertical"
     tools:context=".MessageListFragment">
 
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:padding="10dp"-->
-<!--        android:paddingBottom="10dp"-->
-<!--        android:background="@color/dark_blue_1">-->
-
-<!--        <ImageView-->
-<!--            android:id="@+id/chat_back"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:src="@drawable/umf_logo" />-->
-
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:layout_marginLeft="10dp"-->
-<!--            android:text="Messaging"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textSize="20dp" />-->
-
-<!--    </LinearLayout>-->
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/messageRecycleView"
         android:layout_width="match_parent"

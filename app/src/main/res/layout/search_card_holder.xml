@@ -38,14 +38,14 @@
                     android:text="Category"
                     android:layout_alignParentRight="true"
                     android:textStyle="bold"
-                    android:textColor="@color/dark_blue_1"
+                    android:textColor="@color/light_orange_1"
                     />
             </RelativeLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="10dp"
+                android:padding="7dp"
                 >
                 <TextView
                     android:id="@+id/TVSearchCardTitle"
