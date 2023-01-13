@@ -46,7 +46,7 @@ public class CommentActivity extends AppCompatActivity {
 
         postId = intent.getStringExtra("postId");
         postedBy = intent.getStringExtra("postedBy");
-        postLike = intent.getStringExtra("postLike");
+//        postLike = intent.getStringExtra("postLike");
 //        System.out.println("showbug" + postLike);
 //        Log.d("show postlike", postLike);
 //        Toast.makeText(this,"Post ID:" + postId, Toast.LENGTH_SHORT).show();
@@ -93,46 +93,46 @@ public class CommentActivity extends AppCompatActivity {
                             binding.like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_heart_2, 0, 0, 0);
 
                         } else {
-                            binding.like.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    FirebaseDatabase.getInstance().getReference()
-                                            .child("posts")
-                                            .child(postId)
-                                            .child("likes")
-                                            .child(FirebaseAuth.getInstance().getUid())
-                                            .setValue(true).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                @Override
-                                                public void onSuccess(Void unused) {
-                                                    FirebaseDatabase.getInstance().getReference()
-                                                            .child("posts")
-                                                            .child(postId)
-                                                            .child("postLike")
-                                                            .setValue((FirebaseDatabase.getInstance().getReference().child("posts").child(postId).get("postLike").toString()) + 1).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                                @Override
-                                                                public void onSuccess(Void unused) {
-                                                                    binding.like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_heart_2, 0, 0, 0);
-
-                                                                    Notification notification = new Notification();
-                                                                    notification.setNotificationBy(FirebaseAuth.getInstance().getUid());
-                                                                    notification.setNotificationAt(new Date().getTime());
-                                                                    notification.setPostID(postId);
-                                                                    notification.setNotificationBy(postedBy);
-                                                                    notification.setType("like");
-
-                                                                    FirebaseDatabase.getInstance().getReference()
-                                                                            .child("notification")
-                                                                            .child(postedBy)
-                                                                            .push()
-                                                                            .setValue(notification);
-
-                                                                }
-                                                            });
-                                                }
-                                            });
-
-                                }
-                            });
+//                            binding.like.setOnClickListener(new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View v) {
+//                                    FirebaseDatabase.getInstance().getReference()
+//                                            .child("posts")
+//                                            .child(postId)
+//                                            .child("likes")
+//                                            .child(FirebaseAuth.getInstance().getUid())
+//                                            .setValue(true).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                                                @Override
+//                                                public void onSuccess(Void unused) {
+//                                                    FirebaseDatabase.getInstance().getReference()
+//                                                            .child("posts")
+//                                                            .child(postId)
+//                                                            .child("postLike")
+//                                                            .setValue((FirebaseDatabase.getInstance().getReference().child("posts").child(postId).get("postLike").toString()) + 1).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                                                                @Override
+//                                                                public void onSuccess(Void unused) {
+//                                                                    binding.like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_heart_2, 0, 0, 0);
+//
+//                                                                    Notification notification = new Notification();
+//                                                                    notification.setNotificationBy(FirebaseAuth.getInstance().getUid());
+//                                                                    notification.setNotificationAt(new Date().getTime());
+//                                                                    notification.setPostID(postId);
+//                                                                    notification.setNotificationBy(postedBy);
+//                                                                    notification.setType("like");
+//
+//                                                                    FirebaseDatabase.getInstance().getReference()
+//                                                                            .child("notification")
+//                                                                            .child(postedBy)
+//                                                                            .push()
+//                                                                            .setValue(notification);
+//
+//                                                                }
+//                                                            });
+//                                                }
+//                                            });
+//
+//                                }
+//                            });
                         }
 
                     }
