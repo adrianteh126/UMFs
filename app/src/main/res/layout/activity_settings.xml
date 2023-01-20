@@ -178,14 +178,32 @@ to you right away! :)"
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/BTLogOut"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="100dp"
-            android:backgroundTint="@color/light_orange_1"
-            android:text="LOG OUT" />
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/BTDeleteProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="40dp"
+                android:backgroundTint="@color/light_orange_1"
+                android:text="DELETE" />
+
+            <Button
+                android:id="@+id/BTLogOut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="40dp"
+                android:backgroundTint="@color/light_orange_1"
+                android:text="LOG OUT" />
+
+        </LinearLayout>
 
 
     </LinearLayout>

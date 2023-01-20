@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="5dp">
-
+    android:paddingTop="15dp"
+    android:paddingBottom="15dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profileImage"
@@ -21,6 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
+        android:padding="20dp"
         android:id="@+id/view3"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -47,7 +48,7 @@
 
     <TextView
         android:id="@+id/profession"
-        android:layout_width="228dp"
+        android:layout_width="220dp"
         android:layout_height="35dp"
         android:text="TextView"
         android:textSize="14sp"
@@ -66,6 +67,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
+        android:padding="5dp"
         android:scaleType="centerCrop"
         android:src="@drawable/nature"
         app:layout_constraintEnd_toEndOf="parent"
@@ -81,6 +83,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:text="TextView"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="@+id/postImage"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/postImage"
@@ -93,6 +96,7 @@
         android:layout_marginStart="16dp"
         android:drawableLeft="@drawable/ic_chat"
         android:drawablePadding="8dp"
+        android:paddingLeft="5dp"
         android:text="Comment"
         app:layout_constraintStart_toEndOf="@+id/like"
         app:layout_constraintTop_toTopOf="@+id/like" />
@@ -104,6 +108,7 @@
         android:layout_marginTop="10dp"
         android:drawableLeft="@drawable/ic_like"
         android:drawablePadding="8dp"
+        android:paddingLeft="10dp"
         android:text="Like"
         app:layout_constraintStart_toStartOf="@+id/postImage"
         app:layout_constraintTop_toBottomOf="@+id/description" />
@@ -131,6 +136,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/roboto_medium"
+        android:padding="10dp"
         android:text="TextView"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/postImage"
