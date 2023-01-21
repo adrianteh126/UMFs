@@ -119,9 +119,11 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(imageUri!=null){
+                    Toast.makeText(EditProfileActivity.this, "Uploading profile picture...",Toast.LENGTH_SHORT).show();
                 uploadProfilePicture();
+                } else {
+                    uploadProfile();
                 }
-                uploadProfile();
             }
         });
 
@@ -160,6 +162,8 @@ public class EditProfileActivity extends AppCompatActivity {
                                         Map<String, Object> picUpdates = new HashMap<>();
                                         picUpdates.put("ProfilePicture", imageUrl);
                                         userRef.updateChildren(picUpdates);
+
+                                        uploadProfile();
 
                                         Toast.makeText(EditProfileActivity.this, "Upload Successful", Toast.LENGTH_LONG).show();
                                     }
