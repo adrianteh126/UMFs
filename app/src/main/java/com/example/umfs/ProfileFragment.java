@@ -128,32 +128,32 @@ public class ProfileFragment extends Fragment {
             Toast.makeText(getContext(), "Error in connecting to database", Toast.LENGTH_SHORT).show();
         }
 
-            userRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    try {
-                        User user = snapshot.getValue(User.class);
-                        //String usernameProfile = snapshot.child("username").getValue().toString();
-                        TVUsernameProfile.setText(user.getUsername());
+        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                try {
+                    User user = snapshot.getValue(User.class);
+                    //String usernameProfile = snapshot.child("username").getValue().toString();
+                    TVUsernameProfile.setText(user.getUsername());
 
-                        //String bioProfile = snapshot.child("Bio").getValue().toString();
-                        TVBioProfile.setText(user.getBio());
+                    //String bioProfile = snapshot.child("Bio").getValue().toString();
+                    TVBioProfile.setText(user.getBio());
 
-                        //String facultyProfile = snapshot.child("Faculty").getValue().toString();
-                        TVFacultyProfile.setText(user.getFaculty());
+                    //String facultyProfile = snapshot.child("Faculty").getValue().toString();
+                    TVFacultyProfile.setText(user.getFaculty());
 
-                        //String pictureProfile = snapshot.child("ProfilePicture").getValue().toString();
-                        Picasso.get().load(user.getProfilePicture()).into(IVProfilePicPage);
-                    } catch (Exception e){
-                        Toast.makeText(context, "ERROR ERROR", Toast.LENGTH_SHORT).show();
-                    }
+                    //String pictureProfile = snapshot.child("ProfilePicture").getValue().toString();
+                    Picasso.get().load(user.getProfilePicture()).into(IVProfilePicPage);
+                } catch (Exception e){
+                    Toast.makeText(context, "ERROR ERROR", Toast.LENGTH_SHORT).show();
                 }
+            }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    Toast.makeText(getContext(), "Error in fetching data", Toast.LENGTH_SHORT).show();
-                }
-            });
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getContext(), "Error in fetching data", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
@@ -196,5 +196,4 @@ public class ProfileFragment extends Fragment {
         shouldRefreshOnResume = true;
     }
 }
-
 
