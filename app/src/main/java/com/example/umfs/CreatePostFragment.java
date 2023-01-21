@@ -322,7 +322,7 @@ public class CreatePostFragment extends Fragment {
                     });
         }
         else {
-            Toast.makeText(getContext(), "No file selected", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Please Upload Image", Toast.LENGTH_SHORT).show();
         }
     }
 
