@@ -36,11 +36,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.501" />
 
+
     <EditText
         android:id="@+id/ETSiswamailLogin"
         android:layout_width="335dp"
         android:layout_height="50dp"
         android:background="@drawable/text_box_edit"
+        android:drawableLeft="@drawable/profile"
         android:drawablePadding="12dp"
         android:hint="Siswamail"
         android:padding="12dp"
@@ -55,7 +57,8 @@
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/text_box_edit"
-        android:hint="Password"
+        android:drawableLeft="@drawable/password"
+        android:hint="  Password"
         android:inputType="textPassword"
         android:padding="12dp"
         android:textSize="20dp"
@@ -85,13 +88,12 @@
     <Button
         android:id="@+id/BTForgotPassword"
         android:layout_width="235dp"
-        android:layout_height="52dp"
-        android:layout_marginBottom="10dp"
+        android:layout_height="wrap_content"
         android:background="#00000000"
         android:text="Forgot Password?"
         android:textAllCaps="false"
         android:textColor="@color/light_orange_1"
-        android:textSize="20sp"
+        android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/BTGoToRegister"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -99,13 +101,13 @@
     <Button
         android:id="@+id/BTGoToRegister"
         android:layout_width="279dp"
-        android:layout_height="51dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
         android:background="#00000000"
         android:text="To Register, click here"
         android:textAllCaps="false"
         android:textColor="@color/dark_blue_2"
-        android:textSize="20sp"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

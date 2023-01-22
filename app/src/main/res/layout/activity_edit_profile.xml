@@ -51,48 +51,68 @@
             android:layout_marginTop="20dp"
             android:backgroundTint="@color/light_orange_1"
             android:letterSpacing="0"
+            android:text="Change Picture"
             android:textAllCaps="false"
-            android:textSize="15dp"
-            android:text="Change Picture"/>
-
-        <TextView
-            android:id="@+id/TVUsername"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="18dp"
-            android:fontFamily="@font/inter_medium"
-            android:text="Username"
-            android:textColor="@color/black"
             android:textSize="15dp" />
 
-        <EditText
-            android:id="@+id/ETUsernameEdit"
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="296dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="30dp"
-            android:text=""
-            android:inputType="textPersonName"
-            android:textSize="15dp" />
-
-        <TextView
-            android:id="@+id/TVBio"
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/inter_medium"
-            android:text="Bio"
-            android:textColor="@color/black"
-            android:textSize="15dp" />
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:inputType="textEmailAddress"
+            android:textColor="#000"
+            android:textColorHint="#000"
+            android:textSize="20sp"
+            android:theme="@style/MyTextInputLayout_overlay"
+            app:boxCornerRadiusBottomEnd="16dp"
+            app:boxCornerRadiusBottomStart="16dp"
+            app:boxCornerRadiusTopEnd="16dp"
+            app:boxCornerRadiusTopStart="16dp"
+            app:startIconDrawable="@drawable/profile">
 
-        <EditText
-            android:id="@+id/ETBioEdit"
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:id="@+id/ETUsernameEdit"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="10dp"
+                android:hint="Username" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="296dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="30dp"
-            android:text=""
-            android:textSize="15dp" />
+
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:inputType="textEmailAddress"
+            android:textColor="#000"
+            android:textColorHint="#000"
+            android:textSize="20sp"
+            android:theme="@style/MyTextInputLayout_overlay"
+            app:boxCornerRadiusBottomEnd="16dp"
+            app:boxCornerRadiusBottomStart="16dp"
+            app:boxCornerRadiusTopEnd="16dp"
+            app:boxCornerRadiusTopStart="16dp"
+            app:startIconDrawable="@drawable/bio">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:id="@+id/ETBioEdit"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="20dp"
+                android:hint="Bio" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
 
 
         <LinearLayout
